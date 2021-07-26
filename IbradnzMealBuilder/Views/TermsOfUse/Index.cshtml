@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "TÉRMINOS Y CONDICIONES";
+}
+<div class="container text-white">
+    <a asp-controller="account" asp-action="index" class="font-size-30 text-white"><i class="fa fa-chevron-left"></i></a>
+    <input id="active-page" value="profile-page" hidden />
+
+    <div>
+
+        @*<object data="@Url.Action("GetTermOfUse")" width="100%">
+            <iframe src="@Url.Action("GetTermOfUse")">
+                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="@Url.Action("GetTermOfUse")">Download PDF</a>.</p>
+            </iframe>
+        </object>*@
+
+        <object data="@Url.Action("GetTermOfUse")" type="application/pdf" width="100%" style="height:100vh">
+            <embed src="@Url.Action("GetTermOfUse")" type="application/pdf" width="100%">
+            <p class="font-h1">This browser does not support PDFs. Please download the PDF to view it: <a target="_blank" href="@Url.Action("GetTermOfUse")">Download PDF</a>.</p>
+            </embed>
+        </object>
+
+    </div>
+</div>

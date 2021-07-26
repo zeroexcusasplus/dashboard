@@ -1,0 +1,16 @@
+﻿@model IbradnzMealBuilder.Models.SetupProfileViewModel
+@using IbradnzMealBuilder.Utility
+
+<div class="row mx-0 mt-0">
+    <div class="form-group col-6 pl-0 mb-0">
+        <div class="input-group mb-3 custom-input-group" style="width:100%">
+            <input asp-for="Height" value="@ViewBag.HeightValue" class="form-control" style="border-right:none !important" />
+            <div class="input-group-append">
+                <span class="input-group-text font-family-poppins-medium" style="background-color:transparent">
+                    cm
+                </span>
+            </div>
+        </div>
+        <span asp-validation-for="Height" class="text-danger font-b1"></span>
+    </div>
+</div>

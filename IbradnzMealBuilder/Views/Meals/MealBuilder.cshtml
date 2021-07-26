@@ -1,0 +1,63 @@
+﻿@model IbradnzMealBuilder.Models.CreateMealBuilderViewModel
+@{ ViewData["Title"] = "Tu plato";
+    ViewData["Header"] = "CONSTRUCTOR DE COMIDA DIARIO";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+
+<input id="active-page" value="meal-builder-page" hidden/>
+
+<div class="container p-0" id="mealBuilder-main-container">
+    <div class="mx-auto font-weight-bold">
+        <div style="max-width:500px" class="mx-auto">
+            <div class="text-center">
+                <div class="font-h2 text-white">
+                    @if (Model.IsUserSubscribed)
+                    {
+                        <span>
+                            Queremos ayudarte con cualquier duda
+                            Escríbenos aquí y te contestaremos a la brevedad
+                        </span>
+                        <div class="text-center my-2">
+                            <a asp-controller="contactus" asp-action="Index" class="btn custom-secondary-btn font-h2" style="background-color:#00db6f;">
+                                Contáctanos <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <span class="font-h2">Logra tu meta más rápido, entrena con las mejores rutinas, controla tus comidas, recibe asesoría y más en Zero Excusas Plus </span>
+                        <div class="text-center my-2 font-family-poppins-medium">
+                            <a asp-controller="subscribe" asp-action="Index" class="btn custom-secondary-btn font-h2" style="background-color:#00db6f;">
+                                Prueba 7 días gratis <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="mealBuilder">
+            <partial name="_MealBuilder" model="Model" />
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    ////$(document).ready(function () {
+    ////    CustomizeMeals();
+    ////});
+
+    //Object.onload = function () {
+    //    CustomizeMeals();
+    //}
+
+    //window.onload = function () {
+    //    CustomizeMeals();
+    //}
+
+</script>

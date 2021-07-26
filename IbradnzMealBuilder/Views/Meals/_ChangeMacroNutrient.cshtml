@@ -1,0 +1,19 @@
+﻿@model IbradnzMealBuilder.Models.MacroNutrientViewModel
+@using IbradnzMealBuilder.Utility 
+<div class="px-3 mt-5">
+    <form method="post">
+        <span class="text-danger" id="totalValidation"></span>
+        <div class="form-group">
+            <label asp-for="MacroNutrientRange"></label>
+            <select asp-for="MacroNutrientRange" asp-items="Html.GetEnumSelectList<MacroNutrientRange>()" class="form-control"></select>
+         </div>
+
+        <div class="text-center my-2 font-family-poppins-medium">
+            <button type="button" class="btn custom-secondary-btn btn-block" onclick="ChangeMacroNutrientsPost()">APLICAR CAMBIOS <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </form>
+</div>
+
+<script>
+ 
+</script>

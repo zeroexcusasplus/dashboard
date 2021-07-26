@@ -1,0 +1,113 @@
+﻿@model IbradnzMealBuilder.Models.SetupProfileViewModel
+@using IbradnzMealBuilder.Utility
+
+<label asp-for="Gender" class="mb-0"></label>
+<div class="gender-radio-toolbar row mx-0 mt-1">
+    @if (Model.Gender == Gender.Male)
+    {
+        <div class="col-6 pl-0">
+            <input type="radio" id="maleGender" class="male-gender" asp-for="Gender" value="@Gender.Male" checked />
+            <label for="maleGender">@EnumExtensions.GetDisplayName(Gender.Male)</label>
+        </div>
+        <div class="col-6 pr-0">
+            <input type="radio" id="femaleGender" class="female-gender" asp-for="Gender" value="@Gender.Female" />
+            <label for="femaleGender">@EnumExtensions.GetDisplayName(Gender.Female)</label>
+        </div>
+    }
+    else
+    {
+        <div class="col-6 pl-0">
+            <input type="radio" id="maleGender" class="male-gender" asp-for="Gender" value="@Gender.Male" />
+            <label for="maleGender">@EnumExtensions.GetDisplayName(Gender.Male)</label>
+        </div>
+        <div class="col-6 pr-0">
+            <input type="radio" id="femaleGender" class="female-gender" asp-for="Gender" value="@Gender.Female" checked />
+            <label for="femaleGender">@EnumExtensions.GetDisplayName(Gender.Female)</label>
+        </div>
+    }
+</div>
+
+<label class="mb-0">Unidades de preferencia <span style="color:#717173;">(chequea bien esta parte) </span></label>
+<div class="unit-radio-toolbar row mx-0 mt-1">
+    @if (Model.Unit == Unit.Lbs)
+    {
+        <div class="col-6 pl-0">
+            <input type="radio" id="lbsUnit" class="lbs-unit" asp-for="Unit" value="@Unit.Lbs" checked onchange="LbsSelected()"  />
+            <label for="lbsUnit">@EnumExtensions.GetDisplayName(Unit.Lbs)</label>
+        </div>
+
+        <div class="col-6 pr-0">
+            <input type="radio" id="kgsUnit" class="kgs-unit" asp-for="Unit" value="@Unit.Kgs"  onchange="KgsSelected()" />
+            <label for="kgsUnit">@EnumExtensions.GetDisplayName(Unit.Kgs)</label>
+        </div>
+    }
+    else
+    {
+        <div class="col-6 pl-0">
+            <input type="radio" id="lbsUnit" class="lbs-unit" asp-for="Unit" value="@Unit.Lbs" onchange="LbsSelected()"  />
+            <label for="lbsUnit">@EnumExtensions.GetDisplayName(Unit.Lbs)</label>
+        </div>
+
+        <div class="col-6 pr-0">
+            <input type="radio" id="kgsUnit" class="kgs-unit" asp-for="Unit" value="@Unit.Kgs" checked onchange="KgsSelected()" />
+            <label for="kgsUnit">@EnumExtensions.GetDisplayName(Unit.Kgs)</label>
+        </div>
+    }
+</div>
+
+
+<style>
+    .gender-radio-toolbar,
+    .unit-radio-toolbar {
+        margin: 10px;
+    }
+
+        .gender-radio-toolbar input[type="radio"],
+        .unit-radio-toolbar input[type="radio"] {
+            opacity: 0;
+            position: fixed;
+            width: 0;
+        }
+
+
+        .gender-radio-toolbar label,
+        .unit-radio-toolbar label {
+            display: inline-block;
+            background-color: #ddd;
+            padding: 10px 20px;
+            border: 1px solid rgb(42, 84, 255);
+            border-radius: 30px;
+            width: 100%;
+            text-align: center;
+        }
+
+            .gender-radio-toolbar label:hover,
+            .unit-radio-toolbar label:hover {
+                cursor: pointer;
+            }
+
+       /* .gender-radio-toolbar input[type="radio"]:focus + label {
+            border: 2px dashed #444;
+        }*/
+
+        .gender-radio-toolbar .male-gender:checked + label {
+            background-color: #0629b8;
+            color: white;
+            font-weight: bold !important;
+        }
+
+        .gender-radio-toolbar .female-gender:checked + label {
+            background-color: #ee7fe2;
+            color: black;
+            font-weight:bold !important;
+        }
+
+        .unit-radio-toolbar .kgs-unit:checked + label,
+        .unit-radio-toolbar .lbs-unit:checked + label {
+            background-color: #51c5bf;
+            color: black;
+            font-weight: bold !important;
+        }
+
+    
+</style>

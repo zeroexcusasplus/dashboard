@@ -1,0 +1,194 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewFaqModel>
+
+@{ ViewData["Title"] = "PREGUNTAS FRECUENTES";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "PREGUNTAS FRECUENTES "; }
+
+<input id="active-page" value="profile-page" hidden />
+<div class="container text-white font-family-poppins-medium">
+    <a asp-controller="account" asp-action="index" class="font-size-30 text-white"><i class="fa fa-chevron-left"></i></a>
+    <div>
+        <div class="form-group">
+            <label class="text-center"> ¿Tienes preguntas? Queremos contestarlas.</label>
+            <input class="form-control" id="user-question" />
+            <div class="text-danger" id="user-question-validation"></div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="custom-secondary-btn send-question-btn" onclick="submitQuestion()">Envia tu pregunta <i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div id="user-question-confirmation" class="font-b1 text-center my-3" style="display:block;color:#00db6f">
+            
+        </div>
+    </div>
+</div>
+
+@foreach (var faq in Model)
+{
+    <div class="text-white">
+        <div class="collapsible question-menu font-b1">
+            <div class="title">
+                @faq.Question
+            </div>
+        </div>
+        <div class="content">
+            <div class="font-b1" style="white-space: pre-line;margin-top:-10px">
+                @faq.Answer
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<style>
+    .send-question-btn:focus {
+        outline: none !important;
+    }
+
+    .collapsible {
+        cursor: pointer;
+        outline: none;
+    }
+
+        .active, .collapsible:hover {
+            /*  background-color: #555;*/
+        }
+
+        /*.title{
+            width:80%
+        }*/
+
+    .title:after {
+        content: '\276F';
+        color: white;
+        font-weight: 700;
+        /*  float: right;*/
+        margin-left: 3px;
+        float:right;
+    }
+
+    .active:after {
+        content: '\276F';
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 700;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .content {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: white;
+        color:black;
+    }
+
+    .question-menu {
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        padding: 10px 20px;
+    }
+
+    .content-wrapper-body {
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-top: 0px;
+    }
+
+</style>
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.firstElementChild.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    function submitQuestion() {
+        var userQuestion = document.getElementById("user-question").value;
+        var userQuestionValidation = document.getElementById("user-question-validation");
+        if (userQuestion.length == 0) {
+            userQuestionValidation.innerHTML = "Ingresar pregunta";
+        }
+        else {
+            userQuestionValidation.innerHTML = "";
+            var questionConfirmation = document.getElementById("user-question-confirmation");
+            questionConfirmation.innerHTML = "Sending question ...";
+            $.ajax({
+                url: "/Faq/SubumitQuestion",
+                dataType: "json",
+                type:"POST",
+                data: {
+                    question: userQuestion,
+                },
+                success: function () {
+                    questionConfirmation.innerHTML = "Apreciamos tu apoyo,  estamos tomando en cuenta tu pregunta";
+                    document.getElementById("user-question").value = "";
+                },
+                error: function () {
+                    questionConfirmation.innerHTML = "Ocurrió un error, inténtalo de nuevo";
+                }
+            })
+        }
+        
+    }
+
+
+    function CalculateMealAmount(mealNumberId) {
+
+        var customize = document.querySelector('input[name="Customize"]:checked').value;
+        CloseMsgBox();
+
+        $.ajax({
+            url: "/Meals/CalculateMealAmount/",
+            dataType: "json",
+            data: {
+                carbohydrateId: carbohydrateSelected, proteinId: proteinSelected, fatId: fatSelected,
+                macrosCarbs: macroCarbohydrate.value, macrosProtein: macroProtein.value, macrosFat: macroFat.value, numberOfPlate: mealNumber.value,
+            },
+            success: function (result) {
+                $(carbohydrateAmt).val(result.carbs);
+                $(carbohydrateAmtGr).val(result.carbsAndUnit);
+                $(proteinAmt).val(result.protein);
+                $(proteinAmtGr).val(result.proteinAndUunit);
+                $(fatAmt).val(result.fat);
+                $(fatAmtGr).val(result.fatAndUnit);
+
+                if (customize == 1) {
+                    $(".otherCarbsAmtGr").val(result.carbsAndUnit);
+                    $(".otherCarbsInput").val(result.carbs);
+                    $(".otherCarbsSelect").val(carbohydrateSelected);
+                    $(".otherProteinAmtGr").val(result.proteinAndUunit);
+                    $(".otherProteinInput").val(result.protein);
+                    $(".otherProteinSelect").val(proteinSelected);
+                    $(".otherFatAmtGr").val(result.fatAndUnit);
+                    $(".otherFatInput").val(result.fat);
+                    $(".otherFatSelect").val(fatSelected);
+                }
+
+                if (Number(result.fat) < 0) {
+                    LowProteinOption();
+                }
+            },
+            error: function (xhr, status, error) {
+                //ShowSnackbarError("Oops, sorry! Error");
+            }
+        });
+
+    }
+
+
+</script>

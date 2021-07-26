@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<partial name="_HeadTagLayout" />
+
+<body>
+
+    <div class="container-fluid p-0">
+        <partial name="_CookieConsentPartial" />
+        <main role="main">
+            <header class="d-sm-block d-md-block d-lg-none d-xl-none w-100 mobile-navbar-header" style="margin-bottom:100px">
+                <partial name="_MobileNavbar2" />
+            </header>
+            <header class="d-none d-lg-block">
+                <partial name="_Navbar2" />
+            </header>
+            <div>
+
+                @RenderBody()
+            </div>
+        </main>
+
+        <partial name="_Footer" />
+
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<style>
+
+    /*less than md*/
+    @@media screen and (max-width: 991px) and (min-width: 0px) {
+        main > div {
+            margin-top: 55px;
+        }
+    }
+</style>

@@ -1,0 +1,57 @@
+﻿@model IbradnzMealBuilder.Models.ViewTechniqueForMuscle
+@{
+    ViewData["Title"] = "ENTRENAMIENTO EN CASA".ToLower();
+    ViewData["Header"] = "ENTRENAMIENTO EN CASA";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["PageType"] = "Training";
+}
+
+<input id="active-page" value="training-page" hidden />
+<div class="modal fade" id="videoPlayer">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:black">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="videoPlayerBody" style="background-color:black">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="font-family-poppins-medium">
+    <partial name="_TrainingType" />
+    <div style="text-align:center;font-weight:500" class="font-size-25 text-white font-family-poppins-medium my-2">
+        <div style="position:absolute;left:30px;font-size:13px;margin-top:10px">
+            <i class="fas fa-arrow-left"></i>  <a asp-action="TechniqueAndTutorials" style="color: white !important">Volver</a>
+        </div>
+        @Model.MuscleGroup
+    </div>
+    <div class="mx-auto training-card mt-2 pt-2">
+        <div class="row p-2">
+            @foreach (var video in Model.TechniqueVideos)
+            {
+                <div class="col-6 mb-3">
+                    @if (Model.IsCustomerSubscribed)
+                    {
+                        <div class="light-grey-background" style="text-align:center;cursor:pointer" onclick="PlayTrainingVid(@video.Id,2)">
+                            @video.Title
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="light-grey-background" style="text-align:center;cursor:pointer" onclick="PremiumUsersOnly()">
+                            @video.Title
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

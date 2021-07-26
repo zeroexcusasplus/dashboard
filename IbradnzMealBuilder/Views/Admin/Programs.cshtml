@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewProgramModel>
+@{
+    ViewData["Title"] = "Programas de entrenamiento";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "Programas de entrenamiento".ToUpper();
+}
+
+<div class="font-family-poppins-medium">
+    <div style="text-align:right">
+        <a class="btn custom-primary-btn mb-3" asp-action="AddProgram">Add program</a>
+    </div>
+    <div class="card box-shadow">
+        <div class="card-body">
+            <h5>Programs</h5>
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Desc</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var program in Model)
+                    {
+                        <tr>
+                            <td>@program.Order</td>
+                            <td>
+                                @program.Name
+                            </td>
+                            <td>
+                                @program.TrainingType
+                            </td>
+                            <td>
+                                @program.Description
+                            </td>
+                            <td>
+                                <a class="btn btn-sm custom-primary-btn float-right" asp-action="EditProgram" asp-route-id="@program.Id">Edit</a>
+                                <a class="btn btn-sm custom-secondary-btn float-right">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    .card {
+        margin-bottom: 30px;
+    }
+</style>

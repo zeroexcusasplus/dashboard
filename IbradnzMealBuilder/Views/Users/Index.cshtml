@@ -1,0 +1,58 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Core.ApplicationUser>
+
+
+<hr />
+<div class="card">
+    <div class="card-header border-bottom border-warning">
+
+        <div class="row">
+            @*<div class="col-md-4">
+                <a asp-action="Create" class="btn btn-outline-primary">Create a User</a>
+            </div>*@
+            <div class="col-md-4 ">
+                <div class="justify-content-between">
+                    <h4>All users</h4>
+                </div>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <!--<div class="float-right">-->
+                @*<a asp-action="Index" class="btn btn-outline-success">Back to List</a>*@
+                <!--<button type="submit" class="btn btn-outline-success">Save</button>
+                </div>-->
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <tr><th>ID</th><th>Name</th><th></th><th></th><th></th></tr>
+            @foreach (IbradnzMealBuilder.Core.ApplicationUser user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                 
+                    <td>
+                        @*<a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@user.Id">
+                            Update
+                        </a>*@
+                    </td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                            @*<button type="submit" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>*@
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="card-footer border-top border-warning">
+
+    </div>
+</div>
+

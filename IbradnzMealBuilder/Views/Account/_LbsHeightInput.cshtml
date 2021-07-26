@@ -1,0 +1,26 @@
+﻿@model IbradnzMealBuilder.Models.SetupProfileViewModel
+@using IbradnzMealBuilder.Utility
+
+<div class="row mx-0">
+    <div class="d-inline-block col-6 pl-0">
+        <div class="input-group mb-3 custom-input-group" style="width:100%">
+            <input asp-for="HeightInFeet" value="@ViewBag.HeightFeetValue" class="form-control" style="border-right:none !important" />
+            <div class="input-group-append">
+                <span class="input-group-text font-family-poppins-medium" style="background-color:transparent">
+                    ft
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="d-inline-block col-6 pr-0">
+        <div class="input-group mb-3 custom-input-group" style="width:100%">
+            <input asp-for="HeightInches" value="@ViewBag.HeightInchValue" class="form-control" style="border-right:none !important" />
+            <div class="input-group-append">
+                <span class="input-group-text font-family-poppins-medium" style="background-color:transparent">
+                    in
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<span asp-validation-for="HeightInFeet" class="text-danger font-b1"></span>

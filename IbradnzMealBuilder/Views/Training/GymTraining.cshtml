@@ -1,0 +1,47 @@
+﻿
+@model IbradnzMealBuilder.Models.GymTrainingModel
+@{
+    ViewData["Title"] = "MI ENTRENAMIENTO".ToLower();
+    ViewData["Header"] = "MI ENTRENAMIENTO";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["PageType"] = "Training";
+}
+
+<input id="active-page" value="training-page" hidden />
+<div>
+    <partial name="_TrainingType" />
+    <div style="text-align:center;font-weight:500" class="text-white my-2">
+        <div style="margin-top:10px;text-align:left" class="d-sm-block d-md-none d-lg-none d-xl-none font-b2">
+            <i class="fas fa-arrow-left"></i>  <a asp-action="Index" style="color: white !important">Volver</a>
+        </div>
+        <div class="font-b1 text-uppercase">Programas de Entrenamiento</div>
+        <div class="font-b2">
+            Inicia el Programa de Entrenamiento que quieras acorde a tu nivel y tu meta
+        </div>
+    </div>
+    <div class="mx-auto bg-white training-card mt-2 pt-2 font-b1">
+
+        @foreach (var program in Model.Programs)
+        {
+            string youtubeEmbededUrl = "https://youtube.com/embed/" + program.PreviewYoutubeLink;
+            <div class="row p-2">
+                <div class="col-6">
+                    <iframe id="YouTubevideo" src="@youtubeEmbededUrl" width="100%" height="100" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="col-6">
+                    <div class="font-b1">
+                        @program.Name
+                    </div>
+                    <div class="font-b2">
+                        12 weeks program
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="Training" asp-action="GymTrainingProgram" asp-route-id="@program.Id">
+                            INICIA ESTE PROGRAMA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

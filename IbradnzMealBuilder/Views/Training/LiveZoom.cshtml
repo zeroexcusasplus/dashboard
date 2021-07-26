@@ -1,0 +1,46 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewLiveZoomModel>
+@{
+    ViewData["Title"] = "ENTRENAMIENTO EN CASA".ToLower();
+    ViewData["Header"] = "ENTRENAMIENTO EN CASA";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["PageType"] = "Training";
+}
+
+<input id="active-page" value="training-page" hidden />
+<div>
+    <partial name="_TrainingType" />
+    <div class="mx-auto training-card mt-2 pt-2 font-family-poppins-medium my-5">
+        <div class="row p-2">
+            <div class="col-6">
+                <video controls="controls" class="w-100" style="height:100px">
+                    <source src="" type="video/mp4" />
+                </video>
+            </div>
+            <div class="col-6">
+                <div class="font-weight-bold">
+                    SESION EN VIVO VIA ZOOM
+                </div>
+                <div style="font-size:13px">
+                    12 weeks program
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mx-auto dark-grey-background training-card mt-2 pt-2 font-family-poppins-medium p-2">
+    <div style="font-size:20px" class="font-weight-bold">SESION EN VIVO VIA ZOOM</div>
+
+    <div>
+        Paragraph
+    </div>
+    @foreach (var liveZoom in Model)
+    {
+        <div class="my-3">
+            <span class="font-weight-bold">@liveZoom.Title</span>
+            <span>
+                <a target="_blank" style="text-decoration:underline" href="@liveZoom.Link">Únete al zoom en vivo</a>
+            </span>
+        </div>
+    }
+</div>

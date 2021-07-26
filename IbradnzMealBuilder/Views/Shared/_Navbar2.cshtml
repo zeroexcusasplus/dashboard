@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light" style="background-color: #3c3c3c">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-row mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" asp-area="" asp-controller="Training" asp-action="Index">Mi entrenamiento</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" asp-area="" asp-controller="About" asp-action="Index">Acerca de</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" asp-area="" asp-controller="Services" asp-action="Index">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" asp-area="" asp-controller="Contact" asp-action="Index">Contactnos</a>
+                </li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole(AppConstant.AdminRole))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Dashboard</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Account" asp-action="Profile">Mi perfil</a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="nav-item mt-1 mx-1">
+                        <a class="nav-link custom-primary-btn px-4 py-1" asp-controller="Account" asp-action="setupProfile">
+                            <i class="far fa-user"></i> Register
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-1 mx-1">
+                        <a class="nav-link custom-primary-btn px-4 py-1" asp-area="Identity" asp-page="/Account/Login">
+                            <i class="far fa-user"></i> Log in
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

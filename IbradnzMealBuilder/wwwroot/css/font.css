@@ -1,0 +1,42 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+ @font-face{
+    font-family: 'big-noodle';
+    src: url('/fonts/big_noodle_titling.ttf');
+}
+
+@font-face {
+    font-family: 'poppins-light';
+    src: url('/fonts/poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: 'poppins-medium';
+    src: url('/fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'poppins-semiBold';
+    src: url('/fonts/poppins/Poppins-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'poppins-bold';
+    src: url('/fonts/poppins/Poppins-Bold.ttf');
+}
+
+.font-family-poppins-bold {
+    font-family: poppins-bold !important;
+}
+
+.font-family-poppins-light{
+    font-family:poppins-light !important;
+}
+
+.font-family-poppins-medium{
+    font-family: poppins-medium !important;
+}
+
+.font-family-poppins-semibold {
+    font-family: poppins-semiBold !important;
+}

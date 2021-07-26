@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div style="position:relative">
+    <header class="d-sm-block d-md-block d-lg-none d-xl-none mb-2 w-100 mobile-navbar-header">
+        <partial name="_MobileNavbar1" />
+    </header>
+    <div class="background-image-1" style="height:400px">
+        <header class="d-none d-lg-block">
+            <partial name="_Navbar1" />
+        </header>
+
+        <div class="background-text">
+            <div class="text-header">
+                Cero Excusas
+            </div>
+            <div class="background-text-paragraph">
+                Tener una alimentacion estructurada deberia ser
+                algo que aprendemos en elcolegio, por eso el
+
+                constructor de comidas es gratis.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="stage-container">
+    <div>
+        <div class="d-inline-block box-shadow stage-circle">
+            <span class="secondary-background-color">1</span>
+        </div>
+        <div class="d-inline-block stage-dash">
+            &#8212;
+        </div>
+        <div class="d-none d-md-inline-block stage-dash" style="margin-left: 5px;">
+            &#8212;
+        </div>
+        <div class="d-inline-block box-shadow stage-circle">
+            <span class="secondary-background-color">2</span>
+        </div>
+        <div class="d-inline-block stage-dash">
+            &#8212;
+        </div>
+        <div class="d-none d-md-inline-block stage-dash" style="margin-left: 5px;">
+            &#8212;
+        </div>
+        <div class="d-inline-block box-shadow stage-circle">
+            <span class="primary-background-color">3</span>
+        </div>
+    </div>
+</div>
+
+<div class="text-paragraph-container" style="margin-bottom:100px">
+    <div class="text-paragragh"> Si quieres combinario con entrenamiento y lograr tu meta conviertete en miembro premium</div>
+</div>
+
+<div class="subscription-package-card-container">
+    <div class="row">
+        <div class="col-md-6" style="margin-bottom:100px;">
+            <div class="box-shadow subscription-price-circle mx-auto">
+                <span class="subscription-free-price">$0</span>
+            </div>
+            <div class="card p-0 subscription-package-card">
+                <div class="card-body p-0">
+                    <div class="subscription-package-card-background box-shadow">
+                        <div class="free-subscription-header">GRATIS</div>
+                    </div>
+                    <div class="subscription-package-card-body box-shadow">
+                        <div class="subscrition-package-card-whitespace"></div>
+                        <div class="subscrition-package-card-greyspace"></div>
+                        <div class="subscription-card-text">
+                            <i class="fas fa-check subscription-check"></i>Constructor de comida
+                        </div>
+                        <div class="subscription-card-text greybackground">
+                            <i class="fas fa-times subscription-uncheck"></i>Plan de entrenamiento
+                        </div>
+                        <div class="subscription-card-text">
+                            <i class="fas fa-times subscription-uncheck"></i>Tutorial y tecnica
+                        </div>
+                        <div class="subscription-card-text greybackground">
+                            <i class="fas fa-times subscription-uncheck"></i>Sessiones en vivo
+                        </div>
+                        <div class="subscrition-package-card-whitespace"></div>
+                        <div class="subscrition-package-card-whitespace"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="free-subscription-button-container mx-auto">
+                <a asp-controller="Meals" asp-action="Mealbuilder" class="btn custom-primary-btn py-1">Pruebala gratis<i class="fas fa-chevron-right ml-1"></i></a>
+            </div>
+        </div>
+
+        
+        <div class="col-md-6" style="margin-bottom:100px;">
+            <div class="box-shadow subscription-price-circle mx-auto">
+                <span>$100</span>
+            </div>
+            <div class="card p-0 subscription-package-card">
+                <div class="card-body p-0">
+                    <div class="subscription-package-card-background box-shadow">
+                        <div class="free-subscription-header">PREMIUM</div>
+                    </div>
+                    <div class="subscription-package-card-body box-shadow">
+                        <div class="subscrition-package-card-whitespace"></div>
+                        <div class="subscrition-package-card-greyspace"></div>
+                        <div class="subscription-card-text">
+                            <i class="fas fa-check subscription-check"></i>Constructor de comida
+                        </div>
+                        <div class="subscription-card-text greybackground">
+                            <i class="fas fa-check subscription-check"></i>Plan de entrenamiento
+                        </div>
+                        <div class="subscription-card-text">
+                            <i class="fas fa-check subscription-check"></i>Tutorial y tecnica
+                        </div>
+                        <div class="subscription-card-text greybackground">
+                            <i class="fas fa-check subscription-check"></i>Sessiones en vivo
+                        </div>
+                        <div class="subscrition-package-card-whitespace"></div>
+                        <div class="subscrition-package-card-whitespace"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="premium-subscription-button-container mx-auto">
+                <a asp-controller="Subscribe" class="btn custom-primary-btn py-1">Ir por premium<i class="fas fa-chevron-right ml-1"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+

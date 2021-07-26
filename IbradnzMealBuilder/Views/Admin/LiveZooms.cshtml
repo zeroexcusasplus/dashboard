@@ -1,0 +1,67 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewLiveZoomModel>
+@{
+    ViewData["Title"] = "Live zoom";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "Zoom en vivo".ToUpper();
+}
+
+<div class="font-family-poppins-medium">
+    <div style="text-align:right">
+        <a class="btn custom-primary-btn mb-3" asp-action="AddLiveZoom">Add new live zoom link</a>
+    </div>
+    <div class="card box-shadow">
+        <div class="card-body">
+            <h5>Zoom links</h5>
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Live</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var liveZoom in Model)
+                    {
+                        <tr>
+                            <td>@liveZoom.Title</td>
+                            <td>
+                                @if (liveZoom.IsLive)
+                                {
+                                    <span>Currently live</span>
+                                }
+                                else
+                                {
+                                    <span>Not currently live</span>
+                                }
+                            </td>
+                            <td>
+                                @if (liveZoom.IsLive)
+                                {
+                                    <a asp-controller="Admin" asp-action="ChangeLiveStatus" asp-route-id="@liveZoom.Id" class="btn py-0 custom-secondary-btn">
+                                        para no vivir
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Admin" asp-action="ChangeLiveStatus" asp-route-id="@liveZoom.Id" class="btn py-0 custom-primary-btn">
+                                        para vivir
+                                    </a>
+                                }
+                                <a target="_blank" href="@liveZoom.Link" class="btn btn-sm custom-primary-btn py-0">Ver</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    .card {
+        margin-bottom: 30px;
+    }
+</style>

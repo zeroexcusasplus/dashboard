@@ -1,0 +1,55 @@
+﻿
+@{
+    string gymActiveClass = ViewBag.Training == "GYM" ? "active-tab" : "";
+    string homeActiveClass = ViewBag.Training == "HOME" ? "active-tab" : "";
+    string techniqueActiveClass = ViewBag.Training == "TECHNIQUE" ? "active-tab" : "";
+
+    string gymActiveClassImg = ViewBag.Training == "GYM" ? "active-tab-img" : "";
+    string homeActiveClassImg = ViewBag.Training == "HOME" ? "active-tab-img" : "";
+    string techniqueActiveClassImg = ViewBag.Training == "TECHNIQUE" ? "active-tab-img" : "";
+}
+
+<div class="mx-auto bg-white card training-card">
+    <div class="card-body font-family-poppins-medium">
+        <div class="row">
+            <div class="col-4 px-1">
+                <div class="text-center">
+                    <a asp-controller="Training" asp-action="GymTraining" style="color:#212529 !important">
+                        <img src="/Images/icons/gym training.png" class="training-header-card-img @gymActiveClassImg" />
+                        <div class="font-b1"><span class="@gymActiveClass">Entreno en el gym</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-4 px-1">
+                <div class="text-center">
+                    <a asp-controller="Training" asp-action="HomeTraining" style="color:#212529 !important  ">
+                        <img src="/Images/icons/home-training.png" class="training-header-card-img @homeActiveClassImg" />
+                        <div class="font-b1"><span class="@homeActiveClass"> Entreno en casa</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-4 px-1 m-0">
+                <div class="text-center">
+                    <a asp-controller="Training" asp-action="TechniqueAndTutorials" style="color:#212529 !important  ">
+                        <img src="/Images/icons/arm-porwer-icon.png" class="training-header-card-img @techniqueActiveClassImg" />
+                        <div class="font-b1"><span class="@techniqueActiveClass">Técnicas y tutoriales </span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .active-tab {
+        color: #2a54ff;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .active-tab-img {
+        border-radius: 50%;
+        border: 2px solid #2a54ff;
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 50);
+    }
+</style>

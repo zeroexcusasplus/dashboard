@@ -1,0 +1,58 @@
+﻿@model IbradnzMealBuilder.Models.ContactUsModel
+@{
+    ViewData["Title"] = "CONTÁCTANOS";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "CONTÁCTANOS";
+}
+
+<input id="active-page" value="profile-page" hidden />
+<div class="container text-white">
+    <a asp-controller="account" asp-action="index" class="font-size-30 text-white"><i class="fa fa-chevron-left"></i></a>
+    <div class="font-b1 text-center mt-3">
+        <div>
+            ¿Encontraste alguna falla, tienes alguna mejora o
+            recomendación que quieras compartir?
+        </div>
+        <div>Esta app se construye para tí</div>
+    </div>
+    <div  class="my-5">
+        <form method="post">
+            <div class="form-group my-3">
+                <label asp-for="Affair"></label>
+                <input class="form-control" asp-for="Affair" />
+                <span asp-validation-for="Affair" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="Message"></label>
+                <textarea asp-for="Message" class="form-control" rows="7"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="text-center my-4">
+                <button type="submit" class="custom-secondary-btn font-b1">
+                    Envía tu pregunta <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            @if (Model.MessageSent)
+            {
+                <div class="message-sent-box font-b1">
+                    Tu pregunta fue recibida, te responderemos a tu correo electrónico lo más rápido posible
+                </div>
+            }
+
+        </form>
+    </div>
+</div>
+
+@section Scripts { 
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .message-sent-box {
+        margin-top: 30px;
+        border: 3px solid #00db6f;
+        color: #00db6f;
+        text-align: center;
+        padding: 10px;
+    }
+</style>

@@ -1,0 +1,40 @@
+﻿@model IbradnzMealBuilder.Models.EditFaqModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Edit faq";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "Edit faq".ToUpper();
+}
+
+
+<div class="card bg-white mx-auto mb-5 font-family-poppins-medium mt-5" style="min-width:200px;max-width:500px">
+    <div class="card-body">
+        <form method="post">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="mx-auto box-shadow mb-2" style="width:100%;border-radius:10px;padding:10px 5px 5px 5px">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            }
+            <input asp-for="Id" hidden />
+            <div class="form-group">
+                <label asp-for="Question"></label>
+                <input asp-for="Question" class="form-control" />
+                <span asp-validation-for="Question" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Answer"></label>
+                <textarea asp-for="Answer" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Answer" class="text-danger"></span>
+            </div>
+            <div style="text-align:center">
+                <input id="submit-button" type="submit" class="btn custom-secondary-btn mx-auto" value="Editar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

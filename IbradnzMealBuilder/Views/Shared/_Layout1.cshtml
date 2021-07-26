@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<partial name="_HeadTagLayout" />
+<body>
+   
+    <div class="container-fluid p-0">
+        <partial name="_CookieConsentPartial" />
+        <main role="main">
+            <script>
+                window.intercomSettings = {
+                    app_id: "wk17h0se"
+                };
+            </script>
+            <script>
+                // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/wk17h0se'
+                (function () {
+                    var w = window; var ic = w.Intercom; if (typeof ic === "function") {
+                        ic('reattach_
+activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=
+                        []; i.c = function (args) { i.q.push(args); }; w.Intercom = i; var l = function () {
+                            var s = d.createElement('script'); s.
+                                type = 'text/javascript'; s.async = true; s.src = 'https://widget.intercom.io/widget/wk17h0se'; var
+                                    x = d.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+                        }; if (w.attachEvent) { w.attachEvent('onload', l); } else { w.addEventListener('load', l, false); }
+                    }
+                })();
+            </script>
+            @RenderBody()
+        </main>
+        <partial name="_Footer" />
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

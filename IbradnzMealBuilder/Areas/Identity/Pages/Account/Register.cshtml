@@ -1,0 +1,62 @@
+﻿@page
+@model RegisterModel
+@{ ViewData["ShowFaq"] = "No";
+                ViewData["Title"] = "Regístrate";
+                Layout = "~/Views/Shared/_IdentityAccountLayout.cshtml"; }
+<div class="container py-4">
+    <a asp-controller="Home" asp-action="Index" class="navbar-brand font-weight-500 font-size-15 font-family-poppins-medium">
+        <img src="~/Images/ZeroExcusasLogo.png" style="height:50px;width:180px" />
+    </a>
+    <div class="setupprofile-header my-5 text-white text-left font-h2">Paso 1/3. Crea tu cuenta gratis</div>
+
+    <div class="card small-centralised-card box-shadow mt-5 mb-4 login-card-background">
+        <div class="card-body pt-3">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                @if (!ViewData.ModelState.IsValid)
+                {
+            <div class="mx-auto box-shadow mb-1" style="width:100%;border-radius:10px;padding:10px 5px 5px 5px">
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>}
+
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="text-center mb-4">
+                    <button type="submit" id="submit-button" class="btn custom-primary-btn font-b1">CONTINUA <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <p class="font-weight-500 my-2 font-b1">
+                    Yu tienes una cuenta? <a asp-page="./Login" style="text-decoration:underline" class="font-weight-500">
+                        Inicia sesion <i class="fa fa-chevron-right"></i>
+                    </a>
+                </p>
+                <p class="font-weight-500 font-b1">
+                    Olvidaste tu constrasena?  <a asp-page="./ForgotPassword" style="text-decoration:underline">
+                        Recuperala <i class="fa fa-chevron-right"></i>
+                    </a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mb-5">
+    <img src="/Images/icons/Calculator.png" class="login-note-image" />
+    <div class="login-note-header mx-auto mb-3 font-b1 text-white">Entiende tus calorias</div>
+    <h5 class="login-note-italic-text mx-auto w-75 font-b1 text-white"><i>Entender tus calorias no debe ser fisica cuantica, aqui lo hicimos simple para ti.</i></h5>
+</div>
+<partial name="_Footer" />
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

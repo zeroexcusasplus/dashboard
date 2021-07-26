@@ -1,0 +1,46 @@
+﻿@model IbradnzMealBuilder.Models.SubscriptionPlanModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Suscribir";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<div class="" style="background-image: linear-gradient(to bottom, #5de3db, #5de3db,#f1e9d9,#f1e9d9); min-height: 100vh" >
+    <div class="container">
+        <div class="small-centralised-card my-0 mx-auto">
+            <div class="py-5 font-family-poppins-medium">
+                <a asp-controller="home" asp-action="index" class="font-size-30 text-black"><i class="fa fa-chevron-left"></i></a>
+                <div class="font-h1">Escoge cómo lograrás tu meta</div>
+                @*<div class="font-b1">Tus calorias para <span class="font-weight-bold">perder grasa</span> son: @Model.CustomerCalories</div>*@
+                <div id="subPlanDiv">
+                    <partial name="_SubPlanDetails" model="Model" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    function ChangeSubPlan() {
+        var subPlan = document.getElementById("Plan").value;
+        $.ajax({
+            url: "/Subscribe/ChangePlan/",
+            dataType: "html",
+            data: {
+                plan: subPlan
+            },
+            success: function (result) {
+                $("#subPlanDiv").html(result);
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    }
+</script>

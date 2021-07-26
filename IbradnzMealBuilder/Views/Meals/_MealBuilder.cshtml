@@ -1,0 +1,317 @@
+﻿@model IbradnzMealBuilder.Models.CreateMealBuilderViewModel
+@using IbradnzMealBuilder.Utility
+
+<form method="post" id="mealBuilder-Form">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input hidden value="@Model.IsUserSubscribed" id="isUserSubscribed"/>
+    <div class="card mealbuilder-card mx-auto mt-3 box-shadow bg-white">
+      
+        <div class="card-header text-center bg-white">
+            <div class="">
+                <input type="date" asp-for="Date" hidden />
+                @if (Model.IsUserSubscribed)
+                {
+                    <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer" onclick="ChangeDate(-1)">
+                        <img class="arrow-icon" src="~/Images/icons/PreviousArrow.png" />
+                    </span>
+                }
+                else
+                {
+                    <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer" onclick="ChangeDateUnavailable()">
+                        <img class="arrow-icon" src="~/Images/icons/PreviousArrow.png" />
+                    </span>
+                }
+
+                <div class="d-inline-block font-weight-500">
+                    <span class="line-height-30 font-b1 date-in-spanish-label" id="DateInSpanish">@Model.DateInSpanish</span>
+                </div>
+                @if (Model.IsUserSubscribed)
+                {
+                    <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer" onclick="ChangeDate(1)">
+                        <img class="arrow-icon" src="~/Images/icons/NextArrow.png" />
+                    </span>
+                }
+                else
+                {
+                    <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer" onclick="ChangeDateUnavailable()">
+                        <img class="arrow-icon" src="~/Images/icons/NextArrow.png" />
+                    </span>
+                }
+
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="bg-white py-2 px-4">
+                <label asp-for="WaterIntake" class="font-b1 mb-0"></label>
+            </div>
+            <div class="dark-grey-background py-2 px-4">
+                <input asp-for="WaterIntake" hidden />
+                <p class="m-0 font-b1" style="font-weight:500 !important">@Model.WaterIntake litros</p>
+            </div>
+
+            <div class="bg-white py-2 px-4">
+                <label asp-for="Calories" class="font-b1 mb-0"></label>
+            </div>
+            <div class="dark-grey-background py-2 px-4">
+                <input asp-for="Calories" hidden />
+                <p class="m-0 font-b1" style="font-weight:500 !important">@Model.Calories</p>
+            </div>
+
+            <div class="bg-white py-2 px-4 px-320px-10">
+                <div class="d-inline-block protein-label"><label>Proteína</label></div>
+                <div class="d-inline-block fat-label"><label>Grasas</label></div>
+                <div class="d-inline-block carbs-label" style="word-break:break-all"><label>Carbohidratos</label></div>
+            </div>
+            <input asp-for="MacrosProtein" type="hidden" />
+            <input asp-for="MacroFat" type="hidden" />
+            <input asp-for="MacrosCarbohydrate" type="hidden" />
+            <div class="py-2 px-4 dark-grey-background px-320px-10">
+                <div class="d-inline-block font-b1 protein-label" id="MacrosProteinLabel">@Model.MacrosProtein gr</div>
+                <div class="d-inline-block font-b1 fat-label" id="MacrosFatLabel">@Model.MacroFat gr</div>
+                <div class="d-inline-block font-b1 carbs-label" id="MacrosCarbohydrateLabel">@Model.MacrosCarbohydrate gr</div>
+                <div class="d-inline-block mealbuiler-edit-icon float-right" style="">
+                    @*@if (Model.IsUserSubscribed)
+                    {
+        <div class="d-inline-block" style="font-size:10px;cursor:pointer;color:#2a54ff" onclick="ChangeMacroNutrients()">
+            <i class="fas fa-pencil-alt  fa-2x"></i> <span class="font-family-poppins-medium font-size-14" style="text-decoration:underline">Editar</span>
+        </div> }
+                    else
+                    {
+        <div class="d-inline-block" style="font-size:10px;cursor:pointer;color:#2a54ff" onclick="ChangeMacroNutrientsUnavailable()">
+            <i class="fas fa-pencil-alt  fa-2x"></i> <span class="font-family-poppins-medium font-size-14" style="text-decoration:underline">Editar</span>
+        </div>}*@
+                </div>
+            </div>
+
+            <div class="row py-2 w-100 bg-white m-0">
+                <label asp-for="MealNumber" class="col-7 font-b1 p-0 pl-4"></label>
+                <div class="col-5 font-b1 p-0 pr-lg-4">
+                    <select asp-for="MealNumber" class="form-control-sm w-100 numberofmeals" onchange="ChangeNumberOfMeals()"
+                            style="">
+                        @for (int i = AppConstant.MinNumberOfPlates; i <= AppConstant.MaxNumberOfPlates; i++)
+                        {
+                            if (i > AppConstant.MaxNumberOfPlatesForFreeAccount && !Model.IsUserSubscribed)
+                            {
+                                <option value="@i" onclick="DisallowNumberOfMeals()">@i comidas</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i comidas</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <input type="radio" asp-for="Customize" value="2" checked hidden/>
+            @*<div class="row py-2 w-100 dark-grey-background m-0">
+            <label asp-for="Customize" class="col-8 font-b1 p-0 pl-4"></label>
+            <div class="col-4 font-b1 pl-1 p-0 pr-4">
+                <div class="d-inline-block mb-2">
+                    <input type="radio" asp-for="Customize" value="1" checked onchange="CustomizeMeals()" style="height: 25px; width: 25px;vertical-align:middle" />
+                    <label asp-for="Customize" class="d-inline mr-2 font-size-25">No</label>
+                </div>
+                <div class="d-inline-block">
+                    @if (Model.IsUserSubscribed)
+                    {
+                        <input type="radio" asp-for="Customize" value="2" onchange="CustomizeMeals()" style="height: 25px; width: 25px;vertical-align:middle" />
+                    }
+                    else
+                    {
+                         <input type="radio" asp-for="Customize" value="2" onchange="CustomizeMealsUnavialable()"  style="height: 25px; width: 25px;vertical-align:middle"/>
+                    }
+                    <label asp-for="Customize" class="d-inline font-size-25">Si</label>
+                </div>
+            </div>
+        </div>*@
+
+        </div>
+    </div>
+
+    <div>
+        <div id="mealBuilderTable">
+            <partial name="/Views/Meals/_MealBuilderMealTable.cshtml" model="Model" />
+        </div>
+    </div>
+    <div class="row mt-4 font-family-poppins-medium text-white">
+        <div class="col-4 text-center">
+            @if (Model.IsUserSubscribed)
+            {
+                <button type="submit" class="bg-transparent border-0 font-b1">
+                    <i class="far fa-arrow-alt-circle-down fa-3x" style="color:white"></i>
+                </button>
+            }
+            else
+            {
+                <button class="bg-transparent border-0 font-b1" type="button" onclick="PremiumUsersOnly()">
+                <i class="far fa-arrow-alt-circle-down fa-3x" style="color:white"></i>
+            </button>
+            }
+            <div class="font-b1">Descarga tus comidas</div>
+        </div>
+        <div class="col-4 text-center">
+            @if (Model.IsUserSubscribed)
+            {
+                <button type="button" class="bg-transparent border-0 font-b1" onclick="ChangeDate(-1)">
+                    <i class="far fa-arrow-alt-circle-left fa-3x secondary-color"></i>
+                </button>
+            }
+            else
+            {
+                  <button type="button" class="bg-transparent border-0 font-b1" onclick="ChangeDateUnavailable()">
+                <i class="far fa-arrow-alt-circle-left fa-3x secondary-color"></i>
+            </button>
+            }
+
+            <div class="font-b1">Regresa al dia anterior</div>
+        </div>
+        <div class="col-4 text-center">
+            @if (Model.IsUserSubscribed)
+            {
+                <button type="button" class="bg-transparent border-0 font-b1" onclick="ChangeDate(1)">
+                    <i class="far fa-arrow-alt-circle-right fa-3x secondary-color"></i>
+                </button>
+            }
+            else
+            {
+                <button type="button" class="bg-transparent border-0 font-b1" onclick="ChangeDateUnavailable()">
+                <i class="far fa-arrow-alt-circle-right fa-3x secondary-color"></i>
+            </button>
+            }
+
+            <div class="font-b1">Continual al dia de manana</div>
+        </div>
+    </div>
+    @*<div style="text-align:center">
+            <input type="submit" class="btn custom-primary-btn mx-auto" value="Save" style="width:300px" />
+        </div>*@
+</form>
+
+
+<style>
+    .numberofmeals {
+        background-color: #2a54ff;
+        border: none !important;
+        color:white;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    .date-in-spanish-label {
+        font-size: 20px;
+    }
+
+    .date-pencil-edit {
+        right: 20px;
+        position: absolute;
+        top: 25px;
+    }
+
+    .protein-label {
+        width: 60px;
+        margin-right: 50px;
+    }
+
+    .fat-label {
+        width: 65px;
+        margin-right: 50px;
+    }
+
+    .carbs-label {
+        width: 140px;
+    }
+
+    .mealbuiler-edit-icon {
+        position: relative;
+        top: -40px;
+    }
+    @@media screen and (max-width: 530px) and (min-width: 450px) {
+        label, .date-in-spanish-label, .mealbuilder-p-values{
+            font-size: 17px !important;
+        }
+    }
+
+    @@media screen and (max-width: 450px) and (min-width: 0px) {
+        .mealbuiler-edit-icon{
+            top:-25px;
+        }
+
+        label,
+        .date-in-spanish-label,
+        .mealbuilder-p-values{
+            font-size: 16px !important;
+        }
+
+        .date-pencil-edit{
+            position:relative;
+            display:block;
+            top:0;
+        }
+        .nutrient-label{
+            font-size:11px;
+            font-weight:600;
+        }
+        .numberofmeals{
+            font-size:14px;
+        }
+
+        .arrow-icon{
+            width:25px;
+        }
+    }
+
+
+    @@media screen and (max-width: 420px) and (min-width: 0px) {
+        .protein-label {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        .fat-label {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .carbs-label {
+            width: 120px;
+        }
+    }
+
+    @@media screen and (max-width: 520px) and (min-width: 420px) {
+        .protein-label {
+            margin-right: 30px;
+        }
+
+        .fat-label {
+            margin-right: 30px;
+        }
+
+        .carbs-label {
+
+        }
+
+        .date-pencil-edit {
+            right: 10px;
+            font-size: 15px;
+        }
+
+    }
+
+
+    @@media screen and (max-width: 320px) and (min-width: 0px) {
+        .px-320px-10{
+            padding-left:10px !important;
+            padding-right:10px !important;
+        }
+
+        .date-pencil-edit {
+            right: 10px;
+            font-size: 15px;
+        }
+
+
+    }
+
+
+
+
+</style>

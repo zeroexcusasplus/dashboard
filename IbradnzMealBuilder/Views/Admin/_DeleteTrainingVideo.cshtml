@@ -1,0 +1,27 @@
+﻿@model IbradnzMealBuilder.Models.DeleteTrainingVideo
+<div class="px-3 mt-5 font-family-poppins-medium">
+    <div class="font-weight-500">
+        @Model.DayHeader
+    </div>
+    <div class="font-weight-500">
+        @Model.Title
+    </div>
+    <div class="mb-3">
+        @Model.TrainingType
+    </div>
+    <div class="mb-3">
+        ¿Está seguro de que desea eliminar este video de capacitación?
+        <br />
+        Las clientes ya no podrán ver este video.
+        <div class="text-danger">Esto no se puede revertir</div>
+    </div>
+    <form method="post" asp-action="DeleteTrainingVideo" id="">
+        <input type="hidden" asp-for="Id" />
+        
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" type="password" required />
+        </div>
+        <input type="submit" class="btn btn-danger" value="Eliminar" id="submit-button" />
+    </form>
+</div>

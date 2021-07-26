@@ -1,0 +1,204 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{ ViewData["Layout"] = "Dashobard";
+    ViewData["PrintMealPage"]= ViewData["PrintMealPage"]==null ? false : ViewData["PrintMealPage"];
+    ViewData["BackgroundColor"] = ViewData["PageType"] == null ? "bg-black" : "cyan-to-black";
+    ViewData["TitleRulerColor"]= ViewData["PageType"] == null ? "bg-white" : "bg-black";
+    }
+
+<!DOCTYPE html>
+<link href="~/css/dashboard.css" rel="stylesheet" />
+<html>
+<partial name="_HeadTagLayout" />
+<body class="@ViewData["BackgroundColor"]">
+    <div id="sidenav" class="sidenav">
+        <a onclick="CloseSidenav()" class="cancel-character-x" role="img" aria-label="Accept"></a>
+        <div id="sidebarbody" class="sidebarbody"></div>
+    </div>
+    <div id="msgBox" class="msgBox box-shadow">
+        <div style="padding:20px;">
+            <div id="msgBoxBody" class="msgBoxBody"></div>
+            <div class="mt-2 font-family-poppins-medium">
+                <button class="btn custom-primary-btn py-0" onclick="CloseMsgBox()">close</button>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-bottom:100px">
+        @if ((bool)ViewData["PrintMealPage"] == true)
+        {
+            
+        }
+        <div style="width:90%" class="mx-auto">
+            <div class="dashboard-title font-h1">@ViewData["Header"]</div>
+        </div>
+        <hr class="m-0 @ViewData["TitleRulerColor"]" />
+        <div class="main-content-wrapper">
+            <div class="content-wrapper-body">
+                <div style="min-height:80vh">
+                    <div id="loading-effect" class="loading-effect">
+                        <div id="loading-text" class="loading-text">
+                            <div class="custom-spinner"></div>
+                            <h3 class="font-family-poppins-medium">Uploading...</h3>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- /.content -->
+    </div>
+    <div class="footer">
+        <div class="row">
+            <div class="col-4 text-center">
+                <a asp-controller="meals" asp-action="mealbuilder">
+                    <div class="footer-icon" id="meal-builder-footer-link">
+                        <img src="~/Images/icons/footer-plate.png" class="w-100" />
+                    </div>
+                </a>
+            </div>
+            <div class="col-4 text-center">
+                <a asp-controller="training" asp-action="index">
+                    <div class="footer-icon" id="training-footer-link">
+                        <img src="~/Images/icons/footer-training-weight.png" class="w-100" />
+                    </div>
+                </a>
+            </div>
+            <div class="col-4 text-center">
+                <a asp-controller="account" asp-action="index">
+                    <div  class="footer-icon" id="profile-footer-link">
+                        <img src="~/Images/icons/footer-profile.png" class="w-100"/>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="~/js/dashboard.js"></script>*@
+    <script src="~/lib/printThis.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+<style>
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+    /*    padding-top: 10px;*/
+        border-top: 3px solid #2a54ff;
+    }
+
+    .footer-icon{
+        width:50px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .active-footer-link {
+        border-top: 3px solid #2a54ff;
+    }
+
+    /*loading effect*/
+    .loading-effect {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 20;
+        cursor: pointer;
+    }
+
+    .loading-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 50px;
+        background-color: #354673;
+        color: white;
+        padding: 20px;
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+    }
+
+    .custom-spinner {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid blue;
+        border-right: 16px solid green;
+        border-bottom: 16px solid red;
+        border-left: 16px solid pink;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        margin-left: 46px;
+    }
+
+    /* Safari */
+    @@-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<script>
+    var activePage = document.getElementById("active-page").value;
+    if (activePage == "meal-builder-page") {
+        document.getElementById("meal-builder-footer-link").classList.add("active-footer-link")
+    }
+    else if (activePage == "training-page") {
+        document.getElementById("training-footer-link").classList.add("active-footer-link");
+    } else if (activePage == "profile-page") {
+        document.getElementById("profile-footer-link").classList.add("active-footer-link");
+    }
+</script>

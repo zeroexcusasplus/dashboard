@@ -1,0 +1,73 @@
+﻿
+
+<footer class="footer dark-grey-background  font-family-poppins-light">
+    <div class="container-fluid text-center">
+        <span class="footer-font text-center px-1">
+            <a asp-controller="Account" asp-action="setupProfile" class="text-black">Registrate</a>
+        </span>
+        <span class="footer-font text-center  px-1">
+            <a asp-controller="Terms" asp-action="Index" class="text-black">Términos y condiciones</a>
+        </span>
+        <span class="footer-font text-center px-1">
+            <a asp-controller="Contact" asp-action="Index" class="text-black" style="width:70px;word-break:break-all">Contáctanos</a>
+        </span>
+
+    </div>
+</footer>
+
+<style>
+
+    .footer-font{
+        font-size:17px;
+        font-weight:700;
+    }
+
+    @@media screen and (max-width: 305px) and (min-width: 0px) {
+        .footer-font {
+            font-size: 5px;
+        }
+    }
+
+    @@media screen and (max-width: 350px) and (min-width: 305px) {
+        .footer-font {
+            font-size: 7px;
+        }
+    }
+
+
+    @@media screen and (max-width: 430px) and (min-width: 350px) {
+        .footer-font {
+            font-size: 8px;
+        }
+    }
+
+@@media screen and (max-width: 450px) and (min-width: 430px) {
+    .footer-font {
+        font-size: 10px;
+    }
+
+}
+
+
+    @@media screen and (max-width: 590px) and (min-width: 450px) {
+        .footer-font {
+            font-size: 11px;
+        }
+    }
+
+
+    @@media screen and (max-width: 800px) and (min-width: 591px) {
+        .footer-font {
+            font-size: 14px;
+        }
+    }
+
+    @@media screen and (max-width: 4000px) and (min-width: 800px) {
+        .footer-font {
+            margin-right:10px;
+            margin-left:10px;
+        }
+    }
+
+</style>
+

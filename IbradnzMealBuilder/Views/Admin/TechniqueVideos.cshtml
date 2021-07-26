@@ -1,0 +1,174 @@
+﻿@model IbradnzMealBuilder.Models.AdminTechniqueVideosViewModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Técnica y tutoriales";
+    ViewData["Header"] = "Técnica y tutoriales".ToUpper();
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+<div id="sidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="CloseSidenav()">&times;</a>
+    <div id="sidebarbody" class="sidebarbody"></div>
+</div>
+
+<div class="text-center">
+    <a asp-action="AddTechniqueVideo" asp-controller="Admin" class="btn custom-secondary-btn my-3 btn-sm mx-auto font-family-poppins-medium">Add new training</a>
+</div>
+<div class="card box-shadow font-family-poppins-medium">
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Muscle</label>
+                    <select class="form-control" asp-for="MuscleGroupId">
+                        <option value="0">All</option>
+                        @foreach (var muscleGroup in Model.MuscleGroups)
+                        {
+                            if (muscleGroup.Id == Model.MuscleGroupId)
+                            {
+                                <option value="@muscleGroup.Id" selected>@muscleGroup.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@muscleGroup.Id">@muscleGroup.Name</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input id="submit-button" type="submit" value="filter" class="btn py-0 custom-primary-btn admin-filter-btn" />
+                </div>
+            </div>
+        </form>
+        <h5>Técnica y tutoriales</h5>
+        <table class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Title</th>
+                    <th>Muscle</th>
+                    <th>View</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var video in Model.TechniqueVideos)
+                {
+                    <tr>
+                        <td>@video.Order</td>
+                        <td>@video.Title</td>
+                        <td>@video.MuscleGroupName</td>
+                        <td>
+                            <p class="font-weight-500 mb-0">
+                                <a href="@Url.Content(video.UrlPath)" target="_blank" style="text-decoration:underline">Ver video</a>
+                            </p>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm custom-secondary-btn py-0 mb-1" asp-controller="Admin" asp-action="EditTechniqueVideo" asp-route-id="@video.Id">Editar</a>
+                            <button class="btn btn-sm custom-primary-btn py-0 ml-2" type="button" onclick="DeleteTechniqueVideo(@video.Id)">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<style>
+    .training-header-card-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .training-header-text {
+        font-size: 12px;
+    }
+
+    .training-card {
+        min-width: 200px;
+        max-width: 500px
+    }
+
+    .training-video {
+        width: 100%;
+        height: 135px;
+    }
+</style>
+<style>
+    /*sidenav*/
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+    }
+
+    .sideNavBorder {
+        border: 1px solid black;
+    }
+
+    .closebtn {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: #dc3545;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+</style>
+
+<script>
+    function DeleteTechniqueVideo(id) {
+        console.log(id);
+        $.ajax({
+            url: "/Admin/DeleteTechniqueVideo/" + id,
+            dataType: "html",
+            data: {},
+            success: function (result) {
+                $("#sidebarbody").html(result);
+                OpenSidenav();
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    }
+
+
+    function OpenSidenav() {
+        var sideNav = document.getElementById("sidenav");
+        sideNav.style.width = "300px";
+        sideNav.classList.add("sideNavBorder");
+    }
+
+    function CloseSidenav() {
+        var sideNav = document.getElementById("sidenav");
+        sideNav.style.width = "0";
+        sideNav.classList.remove("sideNavBorder");
+    }
+
+
+</script>

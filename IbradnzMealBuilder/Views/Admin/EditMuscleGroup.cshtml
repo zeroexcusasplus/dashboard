@@ -1,0 +1,51 @@
+﻿@model IbradnzMealBuilder.Models.EditMuscleGroupModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "editar grupo de músculos";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "editar grupo de músculos".ToUpper();
+}
+
+
+<div class="card dark-grey-background mx-auto mb-5 font-family-poppins-medium" style="min-width:200px;max-width:500px">
+    <div class="card-body">
+        <form method="post">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="mx-auto box-shadow mb-2" style="width:100%;border-radius:10px;padding:10px 5px 5px 5px">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            }
+            <input asp-for="Id" hidden />
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order"></label>
+                <input asp-for="Order" class="form-control" />
+                <span asp-validation-for="Order" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="YoutubeDescription"></label>
+                <input asp-for="YoutubeDescription" class="form-control" />
+                <span asp-validation-for="YoutubeDescription" class="text-danger"></span>
+            </div>
+            <div style="text-align:center">
+                <input id="submit-button" type="submit" class="btn custom-secondary-btn mx-auto" value="Edit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

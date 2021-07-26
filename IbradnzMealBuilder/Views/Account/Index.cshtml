@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "MI PERFIL".ToLower();
+    ViewData["Header"] = "MI PERFIL";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<input id="active-page" value="profile-page" hidden />
+
+<div class="text-white">
+    <div class="font-h1 account-menu">
+        <a asp-controller="account" asp-action="profile" class="text-white">
+            Información Básica
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <a asp-controller="account" asp-action="profile" class="text-white">
+            Mi meta @*my goal*@
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <a asp-controller="images" asp-action="index" class="text-white">
+            Mi progreso / fotos 
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <a asp-controller="account" asp-action="details" class="text-white">
+            Mi cuenta
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <a asp-controller="faq" asp-action="index" class="text-white">
+            Preguntas frecuentes
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <a asp-controller="termsofuse" asp-action="index" class="text-white">
+            Términos y condiciones
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <a asp-controller="contactus" asp-action="index" class="text-white">
+            Contáctanos
+            <i class="fas fa-chevron-right float-right pt-2"></i>
+        </a>
+    </div>
+    <div class="font-h1 account-menu">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index","Home")">
+            <button type="submit" class="logout-btn">
+                Cerrar Sesión
+                <i class="fas fa-chevron-right float-right pt-2"></i>
+            </button>
+        </form>
+    </div>
+    <div class="text-center font-h1 my-4">
+        <div>¿Mejoras, Recomendaciones?</div>
+        <div>Queremos escucharte</div>
+        <div class="my-3">
+            <a asp-controller="contactus" asp-action="index" class="custom-secondary-btn">
+                Escríbenos aquí <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .account-menu {
+        border-bottom: 2px solid white;
+        padding: 10px 20px;
+    }
+
+    .content-wrapper-body {
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-top: 0px;
+    }
+</style>
+
+
+

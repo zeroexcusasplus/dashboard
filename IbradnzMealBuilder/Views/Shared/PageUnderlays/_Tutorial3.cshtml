@@ -1,0 +1,218 @@
+﻿<div class="container-fluid pt-3" style="z-index: -1;height:150vh;overflow-y:no-display;background:black">
+    @*<div style="font-size: 30px; line-height: 30px;" class="text-center text-white">
+        CONSTRUCTOR DE COMIDA DIARIO
+    </div>
+    <hr />*@
+    <div class="font-family-poppins-medium">
+        @*<div class="text-center text-white">Organiza toda tu semana, edita tus macros y  obtén todos los beneficios de Zero Excusas PLUS</div>*@
+        <div class="text-center my-2 font-family-poppins-medium">
+            <a asp-controller="subscribe" asp-action="Index" class="btn custom-secondary-btn" style="background-color:#00db6f;font-size:20px">Prueba 7 dias gratis</a>
+        </div>
+
+        <div class="card mealbuilder-card mx-auto mt-3 box-shadow">
+
+            <div class="card-header text-center">
+                <div class="">
+                    <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer">
+                        <img class="arrow-icon" src="~/Images/icons/PreviousArrow.png" />
+                    </span>
+                    <div class="d-inline-block font-weight-500 font-family-poppins-medium">
+                        <span class="line-height-30 date-in-spanish-label" id="DateInSpanish">@ViewBag.TodaysDate</span>
+                    </div>
+                    <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer">
+                        <img class="arrow-icon" src="~/Images/icons/NextArrow.png" />
+                    </span>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                @*<div class="light-grey-background py-2 px-4">
+                    <label class="mealbuilder-label mb-0">Tu agua del día</label>
+                </div>
+                <div class="dark-grey-background py-2 px-4">
+                    <p class="m-0 mealbuilder-p-values">23 litros</p>
+                </div>
+
+                <div class="light-grey-background py-2 px-4">
+                    <label class="mealbuilder-label mb-0">Tus calorías diarias para tu meta</label>
+                </div>
+                <div class="dark-grey-background py-2 px-4">
+                    <p class="m-0 mealbuilder-p-values">1800</p>
+                </div>*@
+
+                <div class="light-grey-background py-2 px-4 px-320px-10">
+                    <div class="d-inline-block protein-label"><label>Proteína</label></div>
+                    <div class="d-inline-block fat-label"><label>Grasas</label></div>
+                    <div class="d-inline-block carbs-label" style="word-break:break-all"><label>Carbohidratos</label></div>
+                </div>
+                <div class="py-2 px-4 dark-grey-background px-320px-10">
+                    <div class="d-inline-block mealbuilder-p-values protein-label" id="MacrosProteinLabel">54 gr</div>
+                    <div class="d-inline-block mealbuilder-p-values fat-label" id="MacrosFatLabel">34 gr</div>
+                    <div class="d-inline-block mealbuilder-p-values carbs-label" id="MacrosCarbohydrateLabel">61 gr</div>
+                    <div class="d-inline-block mealbuiler-edit-icon float-right" style="">
+                        <div class="d-inline-block" style="font-size:10px;cursor:pointer;color:#2a54ff">
+                            <i class="fas fa-pencil-alt  fa-2x"></i> <span class="font-family-poppins-medium font-size-14" style="text-decoration:underline">Editar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row py-2 w-100 light-grey-background m-0">
+                    <label class="col-7 mealbuilder-label p-0 pl-4">¿Cuántas comidas harás hoy?</label>
+                    <div class="col-5 mealbuilder-p-values p-0 pr-lg-4">
+                        <select class="form-control-sm w-100 numberofmeals" style="">
+                            <option value="">3 comidas</option>
+                            <option value="">4 comidas</option>
+                            <option value="">5 comidas</option>
+                            <option value="">6 comidas</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+       
+
+
+    </div>
+</div>
+
+<style>
+    .overlay {
+        background-color: black;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 150vh;
+        top: 0;
+        left: 0;
+        opacity: 0.90
+    }
+
+    .suc-overlay::after {
+        background-color: #717173 !important;
+        opacity: 0 !important;
+    }
+
+    .numberofmeals {
+        background-color: #2a54ff;
+        border: none !important;
+        color: white;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    .date-in-spanish-label {
+        font-size: 20px;
+    }
+
+    .date-pencil-edit {
+        right: 20px;
+        position: absolute;
+        top: 25px;
+    }
+
+    .protein-label {
+        width: 60px;
+        margin-right: 50px;
+    }
+
+    .fat-label {
+        width: 65px;
+        margin-right: 50px;
+    }
+
+    .carbs-label {
+        width: 140px;
+    }
+
+    .mealbuiler-edit-icon {
+        position: relative;
+        top: -40px;
+    }
+
+    @@media screen and (max-width: 530px) and (min-width: 450px) {
+        label, .date-in-spanish-label, .mealbuilder-p-values {
+            font-size: 17px !important;
+        }
+    }
+
+    @@media screen and (max-width: 450px) and (min-width: 0px) {
+        .mealbuiler-edit-icon {
+            top: -25px;
+        }
+
+        label,
+        .date-in-spanish-label,
+        .mealbuilder-p-values {
+            font-size: 16px !important;
+        }
+
+        .date-pencil-edit {
+            position: relative;
+            display: block;
+            top: 0;
+        }
+
+        .nutrient-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .numberofmeals {
+            font-size: 14px;
+        }
+    }
+
+
+    @@media screen and (max-width: 420px) and (min-width: 0px) {
+        .protein-label {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        .fat-label {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .carbs-label {
+            width: 120px;
+        }
+    }
+
+    @@media screen and (max-width: 520px) and (min-width: 420px) {
+        .protein-label {
+            margin-right: 30px;
+        }
+
+        .fat-label {
+            margin-right: 30px;
+        }
+
+        .carbs-label {
+        }
+
+        .date-pencil-edit {
+            right: 10px;
+            font-size: 15px;
+        }
+    }
+
+
+    @@media screen and (max-width: 320px) and (min-width: 0px) {
+        .px-320px-10 {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+
+        .date-pencil-edit {
+            right: 10px;
+            font-size: 15px;
+        }
+    }
+
+    select {
+        background: #2a54ff !important;
+        color: white;
+    }
+</style>

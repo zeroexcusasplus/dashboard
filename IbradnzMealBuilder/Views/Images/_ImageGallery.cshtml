@@ -1,0 +1,228 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewProfileImageViewModel>
+
+
+
+<div>
+    <div class="container">
+        <div class="row" style="border-top:1px solid white;padding-top:20px">
+            @{ 
+                int count = 1;
+                foreach (var img in Model)
+                {
+                    string imageId = $"image{count}";
+                    <div class="col-6 px-1 mb-3">
+                        <img id="@imageId" src="@Url.Content(img.ProfileUrl)" class="w-100 demo cursor" onclick="currentSlide(@count,@count-1)" />
+                    </div>
+                    count++;
+                }
+             }
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .content-wrapper-body {
+        padding: 0px;
+    }
+
+    .customer-image {
+        height: 450px;
+    }
+
+    .overlay {
+        background-color: black;
+        /*position: absolute;*/
+        z-index: 1;
+        width: 100%;
+       /* height: 100vh;*/
+        /*  top: 0;
+        left: 0;*/
+        opacity: 0.05;
+        margin-left: auto;
+    }
+
+    .suc-overlay::after {
+        background-color: #717173 !important;
+       /* opacity: 0 !important;*/
+    }
+
+    .image-gallery-cancel-character-x:before {
+        content: "\2715";
+        font-size: 50px;
+        color: white;
+        position: absolute;
+        top: 100px;
+        margin-left: auto;
+        margin-left: calc(50% - 30px);
+    }
+
+
+    @@media screen and (max-width:440px) and (min-width:0px) {
+        .customer-image {
+            height: 180px;
+        }
+    }
+
+    @@media screen and (max-width:700px) and (min-width:441px) {
+        .customer-image {
+            height: 350px;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+    .container {
+        position: relative;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+        cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white !important;
+        font-weight: bold;
+        font-size: 45px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        margin-right: -53px;
+        -webkit-user-select: none;
+        margin-left: -58px;
+    }
+
+    .next{
+    }
+
+    .prev{
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+    /*    opacity: 0.6;*/
+    }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+
+</style>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function closeSlideShow() {
+        var pageContent = document.getElementById("page-content");
+        document.getElementById("image-gallery-block").style.display = "none";
+        pageContent.classList.remove("overlay");
+        pageContent.classList.remove("suc-overlay");
+        pageContent.style.pointerEvents = "auto";
+        pageContent.style.height = "auto";
+    }
+
+    function CalculatePageHeight(n) {
+        var pageContent = document.getElementById("page-content");
+        var slide = $("#mySlides" + n).height();
+        debugger;
+        pageHeight = slide + 250;
+        pageContent.style.height = pageHeight + "px";
+    }
+
+    function currentSlide(n,id) {
+        var pageContent = document.getElementById("page-content");
+        
+        pageContent.classList.add("overlay");
+        pageContent.classList.add("suc-overlay");
+        pageContent.style.pointerEvents = "none";
+        document.getElementById("image-gallery-block").style.display = "block";
+        CalculatePageHeight(id);
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        CalculatePageHeight(slideIndex - 1);
+    }
+
+    function DeleteImage(id) {
+        if (confirm("¿Estás seguro de que deseas eliminar esta imagen? Esta imagen se eliminará de forma permanente y no se podrá recuperar.")) {
+            $.ajax({
+                url: "/images/deleteimage/" + id,
+                dataType: "json",
+                success: function () {
+                    location.href = "/images";
+                }
+            })
+        }
+        
+    }
+
+</script>

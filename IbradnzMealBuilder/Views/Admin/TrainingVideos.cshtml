@@ -1,0 +1,257 @@
+﻿@model IbradnzMealBuilder.Models.AdminTrainingViewModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Header"] = "MI ENTRENAMIENTO";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+<div id="sidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="CloseSidenav()">&times;</a>
+    <div id="sidebarbody" class="sidebarbody"></div>
+</div>
+<style>
+    /*sidenav*/
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+    }
+
+    .sideNavBorder {
+        border: 1px solid black;
+    }
+
+    .closebtn {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: #dc3545;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+</style>
+
+<div class="text-center font-family-poppins-medium">
+    <a asp-action="AddTrainingVideo" asp-controller="Admin" class="btn custom-secondary-btn my-3 btn-sm mx-auto">Add new training</a>
+</div>
+<div class="card box-shadow font-family-poppins-medium">
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Training type</label>
+                    <select asp-for="TrainingType" class="form-control" asp-items="Html.GetEnumSelectList<TrainingType>()" onchange="ChangeTrainingType()"></select>
+                </div>
+                <div class="col-md-3">
+                    <label>Program</label>
+                    <select asp-for="Program" class="form-control">
+                        <partial name="_ProgramSelectOption" model="Model.Programs" />
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label>Week</label>
+                    <select asp-for="Week" class="form-control">
+                        <option value="0">All</option>
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            if (Model.Week == i)
+                            {
+                                <option value="@i" selected>@i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label>Day</label>
+                    <select asp-for="Day" class="form-control">
+                        <option value="0">All</option>
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (Model.Day == i)
+                            {
+                                <option value="@i" selected>@i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input id="submit-button" type="submit" value="Filter" class="btn btn-sm py-0 custom-primary-btn" style="margin-top:35px"/>
+                </div>
+            </div>
+        </form>
+        <table class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Training type</th>
+                    <th>Program</th>
+                    <th>Semana</th>
+                    <th>Dia</th>
+                    <th>Order</th>
+                    <th>View</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var training in Model.Training)
+                {
+                    <tr>
+                        <td>@training.Title</td>
+                        <td>@training.TrainingType</td>
+                        <td>@training.ProgramName</td>
+                        <td>@training.Week</td>
+                        <td>@training.Day</td>
+                        <td>@training.Order</td>
+                        <td>
+                            <a href="@Url.Content(training.VideoPath)" target="_blank" style="text-decoration:underline">Ver video</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm custom-secondary-btn py-0 mb-1" asp-controller="Admin" asp-action="EditTrainingVideo" asp-route-id="@training.Id">Editar</a>
+                            <button class="btn btn-sm custom-primary-btn py-0 ml-2" type="button" onclick="DeleteTrainingVideo(@training.Id)">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="mx-auto dark-grey-background training-card mt-2 pt-2">
+    @foreach (var training in Model)
+    {
+        <div class="row p-2 mb-0">
+            <div class="col-sm-12 col-md-5">
+                <div class="training-video dark-grey-background">
+                    <video controls="controls" class="h-100 w-100">
+                        <source src="@Url.Content(training.VideoPath)" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="font-weight-bold mt-1">
+                    @training.Day
+
+                    @training.Week
+
+                    @training.Sets
+
+                    @training.Reps
+
+                    @training.Time
+                </div>
+                <div class="font-weight-500">
+                    @training.Title
+                </div>
+                <div class="">
+                    @training.TrainingType
+                </div>
+                <p class="font-weight-500 mb-0">
+
+                </p>
+                <a class="btn btn-sm custom-secondary-btn py-0 mb-1" asp-controller="Admin" asp-action="EditTrainingVideo" asp-route-id="@training.Id">Editar</a>
+                <button class="btn btn-sm custom-primary-btn py-0 ml-2" type="button" onclick="DeleteTrainingVideo(@training.Id)">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+        <hr class="m-0" />
+    }
+
+
+</div>*@
+
+<style>
+    .training-header-card-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .training-header-text {
+        font-size: 12px;
+    }
+
+    .training-card {
+        min-width: 200px;
+        max-width: 500px
+    }
+
+    .training-video {
+        width: 100%;
+        height: 135px;
+    }
+</style>
+
+<script>
+    function DeleteTrainingVideo(id) {
+        $.ajax({
+            url: "/Admin/DeleteTrainingVideo/" + id,
+            dataType: "html",
+            data: {},
+            success: function (result) {
+                $("#sidebarbody").html(result);
+                OpenSidenav();
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    }
+
+    function ChangeTrainingType() {
+        var trainingType = document.getElementById("TrainingType");
+        $.ajax({
+            url: "/Admin/ProgramsForTrainingType",
+            data: { type: trainingType.value },
+            dataType: "html",
+            success: function (result) {
+                $("#Program").html(result);
+            }
+        })
+    }
+
+    function OpenSidenav() {
+        var sideNav = document.getElementById("sidenav");
+        sideNav.style.width = "300px";
+        sideNav.classList.add("sideNavBorder");
+    }
+
+    function CloseSidenav() {
+        var sideNav = document.getElementById("sidenav");
+        sideNav.style.width = "0";
+        sideNav.classList.remove("sideNavBorder");
+    }
+
+
+</script>

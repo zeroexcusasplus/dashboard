@@ -1,0 +1,137 @@
+﻿
+@model IbradnzMealBuilder.Models.AccountDetailsViewModel
+@{
+    ViewData["Title"] = "Mi cuenta";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "Mi cuenta".ToUpper();
+}
+
+<input id="active-page" value="profile-page" hidden />
+<div class="container font-family-poppins-medium">
+    <a asp-controller="account" asp-action="index" class="font-size-30 text-white"><i class="fa fa-chevron-left"></i></a>
+    <div class="card profile-card mx-auto box-shadow my-3">
+        <div class="card-body p-0 bg-white">
+            <div class="font-h2">Mi plan </div>
+            <div class="font-b1">
+                @Model.Membership
+                <div class="form-group">
+                    <label>Amount : </label>
+                    <label>$@Model.Amount </label>
+                </div>
+                <div class="form-group">
+                    <label>Created On : </label>
+                    <label>@Model.DateCreated </label>
+                </div>
+                <div class="form-group">
+                    <label>Last Modified on : </label>
+                    <label>@Model.DateModified </label>
+                </div>
+                @if (DateTime.Now >= @Model.DateExpire)
+                {
+                    <div class="form-group">
+                        <label class="ExpiredLable">Your subscripton is expired! </label>
+
+                    </div>
+                    <div class="form-group">
+
+                        <a asp-controller="Coupon" asp-action="index">Click here to Subscribe again! <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label>Subscription will Expire on : </label>
+                        <label> @Model.DateExpire</label>
+                    </div>
+                }
+
+
+
+
+
+                <span class="float-right">
+                    <a asp-controller="subscribe" asp-action="index">Cambiar <i class="fas fa-chevron-right"></i></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="card profile-card mx-auto box-shadow my-3">
+        <div class="font-h2">Mi correo </div>
+        <div class="font-b1">
+            @Model.Email
+        </div>
+        <div class="my-3">
+            <form id="change-password-form" method="post">
+                <input asp-for="Membership" hidden />
+                <input asp-for="Email" hidden />
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="mx-auto box-shadow mb-1" style="width:100%;border-radius:10px;padding:10px 5px 5px 5px">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </div>
+                }
+
+                <label class="font-weight-bold">
+                    Cambiar contraseña
+                </label>
+                <div class="form-group">
+                    <input asp-for="OldPassword" class="form-control" placeholder="Contraseña actual" />
+                    <span asp-validation-for="OldPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="NewPassword" class="form-control" placeholder="Nueva contraseña" />
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirmar contraseña" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="text-center mb-1">
+                    <button id="submit-button" type="submit" class="btn custom-primary-btn">Actualizar  <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <a onclick="ForgotPassword()" style="text-decoration:underline">Olvidaste tu contraseña  <i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+    <div class="forgot-password-confirmation font-b1" style="display:none;" id="forgot-password-confirmation-div">
+        sending link ...
+    </div>
+</div>
+
+
+<style>
+    .forgot-password-confirmation {
+        margin-top: 30px;
+        border: 3px solid red;
+        color: red;
+        text-align: center;
+        padding: 10px;
+    }
+    .ExpiredLable{
+        color:red;
+    }
+</style>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    function ForgotPassword() {
+        var forgotPasswordConfirmationDiv = document.getElementById("forgot-password-confirmation-div");
+        forgotPasswordConfirmationDiv.innerHTML = "sending link";
+        forgotPasswordConfirmationDiv.style.display = "block";
+        $.ajax({
+            url: "/Account/ForgotPassword",
+            dataType: "json",
+            success: function (result) {
+                forgotPasswordConfirmationDiv.innerHTML = "Te enviamos un correo para que recuperes tu contraseña";
+            }
+        })
+    }
+</script>

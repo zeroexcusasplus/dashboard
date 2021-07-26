@@ -1,0 +1,109 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewTrainingDayModel>
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Training days";
+    ViewData["Header"] = "Tranining days".ToUpper();
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+<div id="sidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="CloseSidenav()">&times;</a>
+    <div id="sidebarbody" class="sidebarbody"></div>
+</div>
+<style>
+    /*sidenav*/
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+    }
+
+    .sideNavBorder {
+        border: 1px solid black;
+    }
+
+    .closebtn {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: #dc3545;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+</style>
+
+<div class="card box-shadow font-family-poppins-medium">
+    <div class="card-body">
+
+        <h5>Training days</h5>
+        <table class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Training program</th>
+                    <th>Week</th>
+                    <th>Day</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var day in Model)
+                {
+                    <tr>
+                        <td>@day.TraininigTypeString</td>
+                        <td>@day.TrainingProgram</td>
+                        <td>@day.Week</td>
+                        <td>@day.Day</td>
+                        <td>@day.Name</td>
+                        <td>
+                            <a class="btn btn-sm custom-secondary-btn py-0 mb-1" asp-controller="Admin" asp-action="EditTrainingDay" asp-route-id="@day.Id">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<style>
+    .training-header-card-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .training-header-text {
+        font-size: 12px;
+    }
+
+    .training-card {
+        min-width: 200px;
+        max-width: 500px
+    }
+
+    .training-video {
+        width: 100%;
+        height: 135px;
+    }
+</style>

@@ -1,0 +1,104 @@
+﻿@model IbradnzMealBuilder.Models.TutorialModel
+@{
+    ViewData["Title"] = "Paso 1/3";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="overlay suc-overlay">
+        <a asp-controller="subscribe" asp-action="index" class="cancel-character-x" role="img" aria-label="Accept"></a>
+        <div class="container">
+            <div style="margin-top:100px;margin-bottom:20px" class="text-white text-center">
+                <div class="font-h2 text-white">PASO 1/3</div>
+                <div class="font-b1">
+                    Esta es tu guía del día de hoy, tu agua, tus calorías,
+                    macronutrientes y cuando termine el día
+                    pasas al siguiente
+                </div>
+            </div>
+
+            <div class="card mealbuilder-card mx-auto box-shadow bg-white">
+
+                <div class="card-header bg-white text-center">
+                    <div class="">
+                        <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer">
+                            <img class="arrow-icon" src="~/Images/icons/PreviousArrow.png" />
+                        </span>
+                        <div class="d-inline-block font-weight-500 font-family-poppins-medium">
+                            <span class="line-height-30 date-in-spanish-label" id="DateInSpanish">@Model.DateInSpanish</span>
+                        </div>
+                        <span class="font-size-15 secondary-color font-b1 mx-2" style="cursor:pointer">
+                            <img class="arrow-icon" src="~/Images/icons/NextArrow.png" />
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="bg-white py-2 px-4">
+                        <label class="mealbuilder-label mb-0">Tu agua del día</label>
+                    </div>
+                    <div class="dark-grey-background py-2 px-4">
+                        <p class="m-0 mealbuilder-p-values">@Model.WaterIntake litros</p>
+                    </div>
+
+                    <div class=" bg-white py-2 px-4">
+                        <label class="mealbuilder-label mb-0">Tus calorias diarias para tu meta</label>
+                    </div>
+                    <div class="dark-grey-background py-2 px-4">
+                        <p class="m-0 mealbuilder-p-values">@Model.Calories</p>
+                    </div>
+
+                    <div class=" bg-white py-2 px-4 px-320px-10">
+                        <div class="d-inline-block protein-label"><label>Proteína</label></div>
+                        <div class="d-inline-block fat-label"><label>Grasas</label></div>
+                        <div class="d-inline-block carbs-label" style="word-break:break-all"><label>Carbohidratos</label></div>
+                    </div>
+                    <div class="py-2 px-4 dark-grey-background px-320px-10">
+                        <div class="d-inline-block mealbuilder-p-values protein-label" id="MacrosProteinLabel">@Model.MacrosProtein gr</div>
+                        <div class="d-inline-block mealbuilder-p-values fat-label" id="MacrosFatLabel">@Model.MacroFat gr</div>
+                        <div class="d-inline-block mealbuilder-p-values carbs-label" id="MacrosCarbohydrateLabel">@Model.MacrosCarbohydrate gr</div>
+                        <div class="d-inline-block mealbuiler-edit-icon float-right" style="">
+                            @*<div class="d-inline-block" style="font-size:10px;cursor:pointer;color:#2a54ff">
+                                <i class="fas fa-pencil-alt  fa-2x"></i> <span class="font-family-poppins-medium font-size-14" style="text-decoration:underline">Editar</span>
+                            </div>*@
+                        </div>
+                    </div>
+
+                    <div class="row py-2 w-100 bg-white m-0">
+                        <label class="col-7 mealbuilder-label p-0 pl-4">¿Cuántas comidas harás hoy?</label>
+                        <div class="col-5 mealbuilder-p-values p-0 pr-lg-4">
+                            <select class="form-control-sm w-100 numberofmeals" style="">
+                                <option value="">3 comidas</option>
+                                <option value="">4 comidas</option>
+                                <option value="">5 comidas</option>
+                                <option value="">6 comidas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="font-family-poppins-medium text-center mt-4">
+                <a asp-action="Tutorial2" asp-controller="tutorial" class="btn custom-secondary-btn font-b1" style="font-size:16px">
+                    Entendido <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Shared/PageUnderlays/_Tutorial1.cshtml" />
+
+<style>
+    .cancel-character-x:before {
+        content: "\2715";
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 28px;
+        color: white;
+    }
+
+    .arrow-icon {
+        width: 25px;
+    }
+</style>

@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="Mealtypes">
+        <p class="dashboard-sidenav-link">
+            Tipos de comida
+        </p>
+    </a>
+</li>
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="TrainingVideos">
+        <p class="dashboard-sidenav-link">
+            Entrenamientos
+        </p>
+    </a>
+</li>
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="TrainingVideos">
+        <p class="dashboard-sidenav-link">
+            Vídeos de formación
+        </p>
+    </a>
+</li>
+
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="TechniqueVideos">
+        <p class="dashboard-sidenav-link">
+            Técnica y tutoriales
+        </p>
+    </a>
+</li>
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="LiveZooms">
+        <p class="dashboard-sidenav-link">
+            Zoom en vivo
+        </p>
+    </a>
+</li>
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="Programs">
+        <p class="dashboard-sidenav-link">
+            Programs
+        </p>
+    </a>
+</li>
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="Musclegroups">
+        <p class="dashboard-sidenav-link">
+            Muscle groups
+        </p>
+    </a>
+</li>
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="TrainingDays">
+        <p class="dashboard-sidenav-link">
+            Training days
+        </p>
+    </a>
+</li>
+
+
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Users" asp-action="Index">
+        <p class="dashboard-sidenav-link">
+            All Users
+        </p>
+    </a>
+</li>
+
+<li class="nav-item dashb-navbar-item">
+    <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Admin" asp-action="faq">
+        <p class="dashboard-sidenav-link">
+            Faq
+        </p>
+    </a>
+</li> 

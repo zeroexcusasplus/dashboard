@@ -1,0 +1,65 @@
+﻿@model IbradnzMealBuilder.Models.ViewMealBuilderAndMealsViewModel
+@{
+    ViewData["Title"] = "ViewMeal";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "COMIDA";
+}
+
+<div class="card mx-md-3 font-family-poppins-medium">
+    <div class="card-body">
+        <h4>Meals</h4>
+        <hr />
+        <div>
+            <span class="meallist-header">Consumo de agua</span>: @Model.WaterIntake litros
+        </div>
+        <div>
+            <span class="meallist-header">Numero de comidas</span>: @Model.MealNumber
+        </div>
+        <div>
+            <span class="meallist-header">Fecha</span>: @Model.DateInString
+        </div>
+        <a class="btn custom-primary-btn py-0" asp-controller="Meals" asp-action="PrintMeal" asp-route-id="@Model.Id">Ir a imprimir</a>
+        <hr />
+        <div class="row">
+            @{
+                int mealNumber = 1;
+                foreach (var meal in Model.Meals)
+                {
+                    <div class="col-md-6 mb-4" >
+                        <div class="card box-shadow">
+                            <div class="card-body">
+                                <h5>Meal @mealNumber</h5>
+                                <hr />
+                                <div>
+                                    <div><span class="meallist-header">Nutrient</span>: Protein</div>
+                                    <div><span class="meallist-header">Meal</span>: @meal.Protein</div>
+                                    <div><span class="meallist-header">Amount</span>: @meal.ProteinAmount Gr</div>
+                                    <hr class="m-1" />
+                                </div>
+                                <div>
+                                    <div><span class="meallist-header">Nutrient</span>: Fat</div>
+                                    <div><span class="meallist-header">Meal</span>: @meal.Fat</div>
+                                    <div><span class="meallist-header">Amount</span>: @meal.FatAmount Gr</div>
+                                    <hr class="m-1" />
+                                </div>
+                                <div>
+                                    <div><span class="meallist-header">Nutrient</span>: Carbohydrate</div>
+                                    <div><span class="meallist-header">Meal</span>: @meal.Carbohydrate</div>
+                                    <div><span class="meallist-header">Amount</span>: @meal.CarbohydrateAmount Gr</div>
+                                    <hr class="m-1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    mealNumber = mealNumber + 1;
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .meallist-header{
+        font-weight:500;
+    }
+</style>

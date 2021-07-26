@@ -1,0 +1,9 @@
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.deps.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.AssemblyInfoInputs.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.AssemblyInfo.cs
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.csproj.CoreCompileInputs.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Utility\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.csprojAssemblyReference.cache

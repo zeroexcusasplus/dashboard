@@ -1,0 +1,34 @@
+﻿@model ViewSubscriptionsViewModel
+@{
+    ViewData["Title"] = "Subscriptions";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "SUSCRIPCIONES";
+}
+
+<div  class="mt-5">
+    <h6 style="text-align:right"> Subscription Expiring date: @Model.SubscriptionExpiringDate</h6>
+</div>
+<div class="card box-shadow">
+    <div class="card-body">
+        <h4>Subscriptions</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date Subscribed</th>
+                    <th>Subscription type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var subscription in Model.Subscriptions)
+                {
+                    <tr>
+                        <td>@subscription.DateTimeCreatedString</td>
+                        <td>@subscription.SubscriptionPlan</td>
+                        <td>@subscription.Amount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

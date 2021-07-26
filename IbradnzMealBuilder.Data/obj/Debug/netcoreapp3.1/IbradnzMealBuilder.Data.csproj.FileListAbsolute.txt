@@ -1,0 +1,17 @@
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.deps.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.runtimeconfig.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.runtimeconfig.dev.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Core.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Utility.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Core.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\bin\Debug\netcoreapp3.1\IbradnzMealBuilder.Utility.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.csprojAssemblyReference.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.AssemblyInfoInputs.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.AssemblyInfo.cs
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.csproj.CoreCompileInputs.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.csproj.CopyComplete
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Data\obj\Debug\netcoreapp3.1\IbradnzMealBuilder.Data.genruntimeconfig.cache

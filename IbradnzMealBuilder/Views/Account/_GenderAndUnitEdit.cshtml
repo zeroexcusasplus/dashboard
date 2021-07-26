@@ -1,0 +1,28 @@
+﻿@model IbradnzMealBuilder.Models.EditProfileViewModel
+@using IbradnzMealBuilder.Utility
+
+<div class="form-group mb-3">
+    <label asp-for="Gender" class="d-block"></label>
+    @foreach (var gender in System.Enum.GetValues(typeof(Gender)))
+    {
+        if (Model.Gender == (Gender)((int)gender))
+        {
+<input type="radio" asp-for="Gender" value="@((int)gender)" checked /> }
+else
+{
+<input type="radio" asp-for="Gender" value="@((int)gender)" /> }
+<label asp-for="Gender" class="mr-3">@EnumExtensions.GetDisplayName((Gender)((int)gender))</label>}
+</div>
+<div class="form-group mb-3">
+    <label class="d-block">Unidades <span style="color:#717173;font-size:14px">(chequea bien esta parte)</span></label>
+    @foreach (var unit in System.Enum.GetValues(typeof(Unit)))
+    {
+        var unitId = ((int)unit).ToString() + "-unit";
+        if (Model.Unit == (Unit)((int)unit))
+        {
+<input type="radio" asp-for="Unit" value="@((int)unit)" onchange="UnitChange()" checked /> }
+else
+{
+<input type="radio" asp-for="Unit" value="@((int)unit)" onchange="UnitChange()" /> }
+<label asp-for="Unit" class="mr-3">@EnumExtensions.GetDisplayName((Unit)((int)unit))</label>}
+</div>

@@ -1,0 +1,69 @@
+﻿@model IbradnzMealBuilder.Models.EditTrainingDayModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Edit training day";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "Edit training day".ToUpper();
+}
+
+
+<div class="card dark-grey-background mx-auto mb-5 font-family-poppins-medium" style="min-width:200px;max-width:500px">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data" id="form">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="mx-auto box-shadow mb-2" style="width:100%;border-radius:10px;padding:10px 5px 5px 5px">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            }
+            <input asp-for="Id" hidden />
+            <input asp-for="TrainingProgram" hidden />
+            <input asp-for="Week" hidden />
+            <input asp-for="Day" hidden />
+            <input asp-for="TrainingType" hidden />
+            <div class="form-group">
+                <label asp-for="TrainingType"></label>
+                <input asp-for="TrainingType" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingProgram"></label>
+                <input asp-for="TrainingProgram" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Week"></label>
+                <input asp-for="Week" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Day"></label>
+                <input asp-for="Day" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div style="text-align:center">
+                <input id="submit-button" type="submit" class="btn custom-secondary-btn mx-auto" value="Editar video" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    $(function () {
+        $('#form').submit(function () {
+            var $this = $(this);
+            if ($this.valid()) {
+                // show loading, spinner, whatever.
+                ShowUploading();
+            }
+        });
+    });
+</script>

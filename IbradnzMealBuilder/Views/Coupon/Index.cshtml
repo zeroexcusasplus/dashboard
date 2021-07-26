@@ -1,0 +1,63 @@
+﻿@model IbradnzMealBuilder.Models.CouponModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Suscribir";
+
+}
+
+<div class="" style="background-image: linear-gradient(to bottom, #5de3db, #5de3db,#f1e9d9,#f1e9d9); min-height: 100vh">
+    <div class="container">
+        <div class="small-centralised-card my-0 mx-auto">
+            <div class="py-5 font-family-poppins-medium">
+                <a asp-controller="subscribe" asp-action="index" class="font-h1 text-black"><i class="fa fa-chevron-left"></i></a>
+                <div class="font-h1">
+                    Realiza tu pago
+                    <img src="~/Images/icons/LOCK BLUE .png" style="width:25px;height:25px;margin-top:-10px" />
+                    <div asp-validation-summary="All" class="text-danger font-b1"></div>
+                </div>
+                <div class="font-b1 my-3">
+                    Configura tu tarjeta de crédito o débito
+                </div>
+                <img src="~/Images/atm-card-types.png" style="width:140px" />
+                <form method="post" class="my-5">
+                    <div class="form-group">
+                        <input asp-for="Coupon" class="form-control" placeholder="Nombre" />
+                        <span asp-validation-for="Coupon" class="text-danger"></span>
+                    </div>
+
+
+                  
+                    
+                    <div class="text-center">
+                        <button id="submit-button" type="submit" class="btn custom-secondary-btn font-b1" style="color:black !important">
+                            Inicia tu plan
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="font-b2 text-center">
+                    Al hacer click en el botón Inicia tu plan, aceptas nuestros <a asp-controller="termsofuse" asp-action="index" style="text-decoration:underline">Términos de uso</a> y nuestra <a asp-controller="privacypolicy" asp-action="index" style="text-decoration:underline">Declaración de privacidad</a>, declaras que tienes mas de 18 años.
+                    Puedes manejar y cancelar tu suscripción desde la
+                    sección Membresia en tu perfil
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .validation-summary-errors > ul {
+        padding-left: 0 !important;
+        list-style-type: none;
+    }
+
+        .validation-summary-errors > ul > li {
+            line-height: 22px;
+            font-weight: 500px !important;
+        }
+</style>

@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "Paso 2/3";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="overlay suc-overlay">
+        <a asp-controller="subscribe" asp-action="index" class="cancel-character-x" role="img" aria-label="Accept"></a>
+        <div class="container page-mt">
+            <div style="margin-top:100px;margin-bottom:20px" class="text-white text-center">
+                <div class="font-h2 text-white">PASO 2/3</div>
+                <div class="font-b1">
+                    Tú tienes el control, aquí seleccionas el número
+                    de comidas que harás al día
+                </div>
+            </div>
+            <div class="card mealbuilder-card mx-auto">
+                <div class="row py-2 w-100 bg-white m-0">
+                    <label class="col-7 font-weight-bold mealbuilder-label p-0 pl-4">¿Cuántas comidas tendrás hoy?</label>
+                    <div class="col-5 mealbuilder-p-values p-0 pr-lg-4">
+                        <select class="form-control-sm w-100 font-b1 numberofmeals" style="">
+                            <option value="">3 comidas</option>
+                            <option value="">4 comidas</option>
+                            <option value="">5 comidas</option>
+                            <option value="">6 comidas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="font-family-poppins-medium text-center mt-4">
+            <a asp-action="Tutorial3" asp-controller="tutorial" class="btn custom-secondary-btn font-b1" style="font-size:16px">
+                Entendido <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Shared/PageUnderlays/_Tutorial2.cshtml" />
+
+<style>
+    .cancel-character-x:before {
+        content: "\2715";
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 28px;
+        color: white;
+    }
+    .arrow-icon {
+        width: 25px;
+    }
+
+    .page-mt{
+        margin-top:410px;
+        padding-right: 14px !important;
+        padding-left:0px !important;
+    }
+
+    @@media screen and (max-width: 420px) and (min-width: 0px) {
+        .page-mt {
+            margin-top: 375px;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+    }
+
+    @@media screen and (max-width: 520px) and (min-width: 420px) {
+    }
+
+
+    @@media screen and (max-width: 320px) and (min-width: 0px) {
+
+    }
+</style>

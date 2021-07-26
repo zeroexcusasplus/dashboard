@@ -1,0 +1,61 @@
+﻿@model IbradnzMealBuilder.Models.ViewMealBuilderAndMealsViewModel
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "DESCARGA TUS COMIDAS";
+    ViewData["PrintMealPage"] = true;
+}
+
+
+<input id="active-page" value="meal-builder-page" hidden />
+
+<a asp-controller="meals" asp-action="mealbuilder" class="font-size-30 text-white" style="position:absolute;top:7px;left:10px">
+    <i class="fa fa-chevron-left"></i>
+</a>
+<div class="card box-shadow printmeal-card font-family-poppins-medium">
+    <div class="card-body">
+        <h4 style="text-align:center">@Model.DateInString</h4>
+        <hr />
+        <div id="print-content" class="font-family-poppins-medium">
+            @{
+                int mealNumber = 1;
+                foreach (var meal in Model.Meals)
+                {
+                    string mealName = "";
+                    if (mealNumber == 1)
+                    { mealName = "Desayuno"; }
+                    else if (mealNumber == 2)
+                    { mealName = "Almuerzo"; }
+                    else if (mealNumber == 3)
+                    { mealName = "Snack/Comida 3"; }
+                    else if (mealNumber == 4)
+                    { mealName = "Cena"; }
+                    else
+                    { mealName = $"Plato {mealNumber}"; }
+
+                    <h6 style="text-align:center">@mealName</h6>
+                    <hr class="m-0" />
+                    <div class="row">
+                        <div class="col-md-3 col-4 my-1">Proteína</div>
+                        <div class="col-md-6 col-4 my-1">@meal.Protein</div>
+                        <div class="col-md-3 col-4 my-1">@meal.ProteinAmount gr</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-4 my-1">Grasas</div>
+                        <div class="col-md-6 col-4 my-1">@meal.Fat</div>
+                        <div class="col-md-3 col-4 my-1">@meal.FatAmount gr</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-4 my-1">Carbos</div>
+                        <div class="col-md-6 col-4 my-1">@meal.Carbohydrate</div>
+                        <div class="col-md-3 col-4 my-1">@meal.CarbohydrateAmount gr</div>
+                    </div>
+                    <hr />
+                    mealNumber = mealNumber + 1;
+                }
+            }
+        </div>
+
+        <a asp-controller="Meals" asp-action="PdfDetails" asp-route-id="@Model.Id" class="btn custom-primary-btn btn-block">Descarga / Guarda</a>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿.custom-date-year,
+.custom-date-month,
+.custom-date-day {
+    width: 33.33%;
+    border: none;
+}
+
+    .custom-date-day > select,
+    .custom-date-month > select,
+    .custom-date-year > select {
+        border: none !important;
+    }
+
+.custom-date-wrapper {
+    border: 1px solid rgb(42, 84, 255) !important;
+    padding: 3px;
+    border-radius: 0.25rem;
+}

@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Successful";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="overlay suc-overlay">
+        <a asp-controller="meals" asp-action="mealbuilder" class="cancel-character-x" role="img" aria-label="Accept"></a>
+        <div style="padding-left:50px;padding-right:50px">
+            <div class="text-center mb-4">
+                <div style="margin-top:200px">
+                    <img src="~/Images/icons/folded-hands.png" style="height:22px;width:22px" />
+                    <div class="text-white font-h2">
+                        Listo @ViewBag.CustomerName
+                        <div>
+                            <div>¡Disfruta de todos los beneficios de</div>
+                            <div>Zero Excusas plus!</div>
+                        </div>
+                    </div>
+                    <div class="text-white font-b1 text-center" style="margin:50px auto">
+                        <div>Control total de tus comidas, +100 Rutinas de entrenamiento, Rutinas en vivo vía Zoom Soporte y Asesoría 24/7 y más.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="font-family-poppins-medium text-center mt-3">
+                <a asp-action="mealbuilder" asp-controller="meals" class="btn custom-secondary-btn font-b1" style="font-size:16px">
+                    A lograr mi meta <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Shared/PageUnderlays/_subscribeSuccessful.cshtml" />
+
+<style>
+    .cancel-character-x:before {
+        content: "\2715";
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 28px;
+        color: white;
+    }
+
+    .arrow-icon {
+        width: 25px;
+    }
+</style>

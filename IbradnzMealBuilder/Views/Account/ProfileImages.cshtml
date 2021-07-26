@@ -1,0 +1,87 @@
+﻿@model IbradnzMealBuilder.Models.ProfileImageViewModel
+@{
+    ViewData["Title"] = "Cambia la contraseña";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "CAMBIA LA CONTRASEÑA";
+}
+<div class="container mb-3">
+    <form method="post" enctype="multipart/form-data">
+        <label asp-for="ProfileImages" class="m-0  text-white"></label>
+        @*<input asp-for="ProfileImages" type="file" class="form-control" style="padding-bottom:35px;"
+               multiple accept=".png, .jpg, .jpeg" onchange="CheckImage()" />
+        <span id="ImageValidation" class="text-danger font-size-20"></span>*@
+        <label for="ProfileImages" class="btn dark-grey-background btn-block btn-outlined" style="width:150px;border-radius:20px;cursor:pointer">Sube tus fotos</label>
+        <input asp-for="ProfileImages" type="file" id="ProfileImages"
+               multiple accept=".png, .jpg, .jpeg" onchange="CheckImage()" style="display: none">
+        <span id="ImageValidation" class="text-danger font-size-15 font-family-poppins-medium"></span>
+        <span id="ImagesCountLabel" class="primary-color font-size-15 font-family-poppins-medium"></span>
+        <button id="submit-button" type="submit" onclick="return validateProfileImages()" class="btn d-block mt-2 py-0 custom-primary-btn">Save</button>
+    </form>
+</div>
+<div class="container mx-auto mb-5" id="profileImagesDiv">
+    <partial name="_ProfileImages" model="Model" />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    var imageValidation = document.getElementById("ImageValidation");
+
+    function validateProfileImages() {
+        if (CheckImage() == true)
+            return true;
+        else {
+            document.getElementById("ProfileImages").focus();
+            return false;
+        }
+    }
+
+    function CheckImage() {
+        var ProfileImages = document.getElementById("ProfileImages");
+        var ImagesCountLabel = document.getElementById("ImagesCountLabel");
+        var countInvalidFiles = 0;
+        var countFiles = 0;
+        for (j = 0; j < ProfileImages.files.length; j++) {
+            var exten = ProfileImages.files[j].name.split('.').pop();
+            exten = exten.toLowerCase();
+
+            if (!(exten == "jpg" || exten == "jpeg" || exten == "png"))
+                countInvalidFiles++;
+            else
+                countFiles++;
+        }
+
+        if (countInvalidFiles > 0) {
+            //invalid format
+            imageValidation.innerHTML = "Formato de archivo inválido";
+            ImagesCountLabel.innerHTML = "";
+            return false;
+        }
+        else {
+            imageValidation.innerHTML = "";
+            ImagesCountLabel.innerHTML = countFiles + " fotos seleccionadas";
+            return true;
+        }
+    }
+
+    function DeleteProfileImage(imageId) {
+
+        if (confirm('¿Estás seguro de que deseas eliminar esta imagen? Esta imagen se eliminará de forma permanente y no se podrá recuperar.')) {
+            $.ajax({
+                url: '/Account/DeleteProfileImage/',
+                dataType: "html",
+                data: { id: imageId },
+                success: function (result) {
+                    $("#profileImagesDiv").html(result);
+                },
+                error: function (xhr, status, error) {
+
+                }
+            });
+        }
+
+    }
+
+</script>

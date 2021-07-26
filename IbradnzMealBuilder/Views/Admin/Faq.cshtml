@@ -1,0 +1,77 @@
+﻿@model IbradnzMealBuilder.Models.ViewFaqAdminModel
+@{
+    ViewData["Title"] = "faq";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "Faq".ToUpper();
+}
+<div class="font-family-poppins-medium">
+    <div>
+        <div style="text-align:right">
+            <a class="btn custom-primary-btn mb-3" asp-action="addFaq">add new faq</a>
+        </div>
+    </div>
+
+    <div class="card box-shadow bg-white">
+        <div class="card-body">
+            <div class="font-h1">
+                unanswered Question
+            </div>
+            <table class="table table-responsive-sm">
+                <thead class="font-h2">
+                    <tr>
+                        <th>Question</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="font-b1">
+                    @foreach (var faq in Model.UnAnsweredQuestions)
+                    {
+                        var answer = faq.Answer.Length > 20 ? faq.Answer.Substring(0, 20) + "..." : faq.Answer;
+                        var question = faq.Question.Length > 20 ? faq.Question.Substring(0, 20) + "..." : faq.Question;
+                        <tr>
+                            <td>@question</td>
+                            <td>
+                                <a class="btn btn-sm custom-secondary-btn float-right" asp-action="EditFaq" asp-route-id="@faq.Id">Answer</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card box-shadow bg-white my-5">
+        <div class="card-header">
+            <div class="font-h1">
+                Answered Question
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-responsive-sm">
+                <thead class="font-h2">
+                    <tr>
+                        <th>Question</th>
+                        <th>Answer</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="font-b1">
+                    @foreach (var faq in Model.AnsweredQuestions)
+                    {
+                        var answer = faq.Answer.Length > 20 ? faq.Answer.Substring(0, 20) + "..." : faq.Answer;
+                        var question = faq.Question.Length > 20 ? faq.Question.Substring(0, 20) + "..." : faq.Question;
+                        <tr>
+                            <td>@question</td>
+                            <td>@answer</td>
+                            <td>
+                                <a class="btn btn-sm custom-secondary-btn float-right" asp-action="ViewFaq" asp-route-id="@faq.Id">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

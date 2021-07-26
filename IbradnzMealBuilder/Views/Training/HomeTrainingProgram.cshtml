@@ -1,0 +1,16 @@
+﻿@model IbradnzMealBuilder.Models.TrainingIndexViewModel
+@{
+    ViewData["Title"] = "ENTRENAMIENTO EN CASA".ToLower();
+    ViewData["Header"] = "ENTRENAMIENTO EN CASA";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["PageType"] = "Training";
+}
+
+<input id="active-page" value="training-page" hidden />
+<div>
+    <partial name="_TrainingType" />
+    <partial name="_TrainingVideoIntro" model="Model.Program" />
+    <div id="training-videos">
+        <partial name="_TrainingVideos" model="Model" />
+    </div>
+</div>

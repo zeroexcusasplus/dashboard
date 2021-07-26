@@ -1,0 +1,194 @@
+﻿@model IbradnzMealBuilder.Models.SubscriptionPlanModel
+@using IbradnzMealBuilder.Utility
+@{
+}
+
+@*@if (Model.Plan == SubscriptionPlan.Free)
+{
+    <style>
+        .subscription-selection-card {
+            height: 33px;
+        }
+    </style>
+}*@
+<div class="card subscription-selection-card" style="background-color:#e9e9ec;border-radius:10px">
+    <div class="row p-2">
+        <div class="col-7 pr-0">
+            <div>@Model.PlanName</div>
+            <div class="font-b2">@Model.PriceDescription</div>
+            @*@if (Model.Plan != SubscriptionPlan.Free)
+            {
+                <div class="font-b2">Prueba gratis 7 días</div>
+            }*@
+
+        </div>
+        <div class="col-5 pl-0">
+            <div id="changeplan" class="font-b2" style="text-align:right;cursor:pointer">
+                Cambiar
+            </div>
+            @*@if (Model.Plan == SubscriptionPlan.Free)
+            {
+
+            }*@
+            <select class="w-100 font-b2" asp-for="Plan" asp-items="Html.GetEnumSelectList<SubscriptionPlan>()"
+                    style="background-color:#e9e9ec;border:none;opacity:0;position:relative;top:-23px"
+                    onchange="ChangeSubPlan()">
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+
+</div>
+
+@if (Model.Plan == SubscriptionPlan.Yearly)
+{
+    <div class="font-b1">
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Acceso total al constructor de comidas</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Soporte y Asesoría 24/7</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Control de tu progreso mensual</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Rutinas con vídeos para cada ejercicio</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Entrenamiento guiado en vivo vía Zoom</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Edición de tus macronutrientes</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Sólo $ 19,99/mes  cargado anual</span>
+        </div>
+    </div>
+
+}
+else if (Model.Plan == SubscriptionPlan.Monthly)
+{
+    <div class="font-b1">
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Acceso total al Constructor de comida</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Soporte y Asesoría 24/7</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Control de tu progreso mensual</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Rutinas con vídeos para cada ejercicio</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Entrenamiento guiado en vivo vía Zoom</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            @*<span style="width:35px">
+                    <img src="~/Images/icons/GRAY LOCK .png" style="width:25px;height:25px" />
+                </span>*@
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="color: #717173;width:85%">Edición de tus macronutrientes</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="color: #717173;width:85%">Sólo $ 39,99/mes  cancela cuando quieras</span>
+        </div>
+    </div>
+}
+
+
+@*else if (Model.Plan == SubscriptionPlan.Free)
+{
+    <div class="font-b1">
+        <div class="row mx-0">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Acceso limitado al Constructor de comidas</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px"><i class="fas fa-check"></i></span>
+            <span style="width:85%">Soporte técnico vía E-mail</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px">
+                <img src="~/Images/icons/GRAY LOCK .png" style="width:25px;height:25px" />
+            </span>
+            <span style="color: #717173;width:85%">Control de tu progreso mensual</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px">
+                <img src="~/Images/icons/GRAY LOCK .png" style="width:25px;height:25px" />
+            </span>
+            <span style="color: #717173;width:85%">Rutinas con vídeos para cada ejercicio</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px">
+                <img src="~/Images/icons/GRAY LOCK .png" style="width:25px;height:25px" />
+            </span>
+            <span style="color: #717173;width:85%">Entrenamiento guiado en vivo vía Zoom</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px">
+                <img src="~/Images/icons/GRAY LOCK .png" style="width:25px;height:25px" />
+            </span>
+            <span style="color: #717173;width:85%">Edición de tus macronutrientes</span>
+        </div>
+        <div class="row mx-0 sub-details">
+            <span style="width:35px">
+                <img src="~/Images/icons/GRAY LOCK .png" style="width:25px;height:25px" />
+            </span>
+            <span style="color: #717173;width:85%">Sólo $ 19,99/mes  cargado anual</span>
+        </div>
+    </div>
+}*@
+
+<div class="text-center mt-4">
+    <a asp-action="pay" asp-controller="subscribe" asp-route-plan="@Model.Plan" class="btn custom-secondary-btn font-b1" style="color:black !important">Continúa</a>
+</div>
+
+<div class="font-b2 text-center" style="margin-top:20px">
+    @if (Model.Plan == SubscriptionPlan.Yearly)
+    {
+        <div>Prueba gratis, si no es para tí </div>
+        <div>puedes cancelar durante el período de prueba.</div>
+    }
+    else if (Model.Plan == SubscriptionPlan.Monthly)
+    {
+        <div>
+            <div>Sólo $39,99/mes</div>
+            <div>Cancela en cualquier momento</div>
+        </div>
+    }
+    @*else if (Model.Plan == SubscriptionPlan.Free)
+    {
+        <div>Zero Excusas Gratis te da acceso sólo al</div>
+        <div>constructor de comidas</div>
+    }*@
+</div>
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-5 text-center"><a asp-controller="termsofuse" asp-action="index" class="font-b2 text-center">Términos y condiciones</a></div>
+    <div class="col-2 text-center"> <a asp-controller="faq" asp-action="index" class="font-b2 text-center">FAQ</a></div>
+    <div class="col-5 text-center"><a asp-controller="contactus" asp-action="index" class="font-b2 text-center">Contáctanos</a></div>
+</div>
+
+<style>
+    .sub-details {
+        margin-top: 20px;
+    }
+</style>

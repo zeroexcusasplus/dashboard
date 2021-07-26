@@ -1,0 +1,36 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.MealBuilderViewModel>
+@{
+    ViewData["Title"] = "Meals";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "MIS COMIDAS";
+}
+
+<div class="font-family-poppins-medium">
+    <h4 class="text-center text-white">Meals</h4>
+    <div class="card box-shadow">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Numero de comidas</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var meal in Model)
+                    {
+                        <tr>
+                            <td>@meal.DateCreatedstring</td>
+                            <td>@meal.MealNumber</td>
+                            <td>
+                                <a asp-action="ViewMeal" asp-route-id="@meal.Id" class="btn btn-sm custom-primary-btn" style="padding: 0.25rem 0.5rem">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

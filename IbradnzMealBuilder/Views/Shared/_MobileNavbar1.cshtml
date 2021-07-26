@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<nav class="navbar navbar-light bg-light bg-transparent" style="padding:10px 30px">
+    <a asp-controller="Home" asp-action="Index" class="navbar-brand font-weight-500 font-size-15 font-family-poppins-medium"
+       style="color:black !important;text-decoration:underline;padding-bottom:10px">
+        <img src="~/Images/ZeroexcusasLogo-dark.png" style="height:50px;width:180px" />
+    </a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" onclick="OpenNavbarSidenav()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+<div id="navbar-sidenav" class="sidenav bg-white font-size-20 font-family-poppins-medium">
+    <div class="sidenav-close-btn primary-background-color" onclick="CloseNavbarSidenav()"></div>
+    <ul class="navbar-nav" style="margin-top:40px">
+        <li class="nav-item">
+            <a class="nav-link sidenav-nav-link" asp-area="" asp-controller="faq" asp-action="Index" style=" color: black !important;">
+                Preguntas Frecuentes
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link sidenav-nav-link" asp-area="" asp-controller="Subscribe" asp-action="Index" style=" color: black !important;">Prueba Zero Excusas PLUS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidenav-nav-link" asp-area="" asp-controller="ContactUs" asp-action="Index">Escríbenos aquí</a>
+        </li>
+        <partial name="_MobileNavbarLogin" />
+    </ul>
+</div>

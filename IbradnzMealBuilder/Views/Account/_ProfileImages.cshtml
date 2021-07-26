@@ -1,0 +1,17 @@
+﻿@model IbradnzMealBuilder.Models.ProfileImageViewModel
+
+<label class="mb-0 text-white">Imágenes de mi perfil</label>
+<hr class="m-0 mb-1" />
+<div class="text-center">
+    @foreach (var image in Model.Images)
+    {
+        <div class="d-inline-block mx-1 mb-3">
+            <img src="@Url.Content(image.ProfileUrl)" style="height:200px;width:200px" class="mb-1" />
+            <div class="d-block">
+                <a target="_blank" href="@Url.Content(image.ProfileUrl)" class="btn py-0 mx-1 custom-primary-btn">View</a>
+                <button class="btn py-0 mx-1 custom-secondary-btn" onclick="DeleteProfileImage(@image.Id)">Delete</button>
+            </div>
+        </div>
+    }
+
+</div>

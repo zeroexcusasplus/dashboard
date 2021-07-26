@@ -1,0 +1,121 @@
+﻿@model IbradnzMealBuilder.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Mi Perfil";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Header"] = "MI PERFIL";   
+}
+
+<input id="active-page" value="profile-page" hidden />
+<div class="container">
+    <a asp-controller="account" asp-action="index" class="font-size-30 text-white"><i class="fa fa-chevron-left"></i></a>
+    <div class="card profile-card mx-auto box-shadow mb-3">
+        <div class="card-header text-center">
+            <span class="font-h2"> Informacion Basica</span>
+            <a asp-action="EditProfile" class=" float-right">
+                <i class="fas fa-pencil-alt primary-color"></i>
+            </a>
+        </div>
+        <div class="card-body p-0">
+            <div class="light-grey-background p-2">
+                <label asp-for="Firstname" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.Firstname</span>
+            </div>
+            <div class="light-grey-background p-2">
+                <label asp-for="Lastname" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.Lastname</span>
+            </div>
+            <div class="dark-grey-background p-2">
+                <label asp-for="Country" class="mb-0"></label>:<span class="font-b1 ml-2"> @Model.Country</span>
+            </div>
+            <div class="light-grey-background p-2">
+                <label asp-for="PhoneNumber" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.PhoneNumber</span>
+            </div>
+            <div class="light-grey-background p-2">
+                <label asp-for="DateOfBirth" class="mb-0"></label>:<span class="font-b1 ml-2"> @Model.DateOfBirth</span>
+            </div>
+            <div class="dark-grey-background p-2">
+                <label asp-for="Gender" class="mb-0"></label>:<span class="font-b1 ml-2"> @Model.Gender</span>
+            </div>
+            <div class="light-grey-background p-2">
+                <label asp-for="unit" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.unit</span>
+            </div>
+            <div class="dark-grey-background p-2">
+                <label asp-for="Height" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.Height</span>
+            </div>
+            <div class="light-grey-background p-2" style="border-radius:0 0px 10px 10px">
+                <label asp-for="Weight" class="mb-0"></label>:<span class="font-b1 ml-2"> @Model.Weight</span>
+            </div>
+        </div>
+    </div>
+    <div class="card profile-card mx-auto box-shadow mb-3">
+        <div class="card-header text-center">
+            <span class="font-h2">Tu meta</span>
+            <a asp-action="EditProfile" class=" float-right">
+                <i class="fas fa-pencil-alt primary-color"></i>
+            </a>
+
+        </div>
+        <div class="card-body p-0">
+            <div class="light-grey-background p-2">
+                <label asp-for="ActivityLevel" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.ActivityLevel</span>
+            </div>
+            <div class="dark-grey-background p-2">
+                <label asp-for="Goal" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.Goal</span>
+            </div>
+            <div class="light-grey-background p-2">
+                <label asp-for="Calories" class="mb-0"></label>:<span class="font-b1 ml-2"> @Model.Calories</span>
+            </div>
+            <div class="dark-grey-background p-2">
+                <label asp-for="BMR" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.BMR</span>
+            </div>
+            <div class="light-grey-background p-2">
+                <label asp-for="BMR_IncludingActivity" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.BMR_IncludingActivity</span>
+            </div>
+            <div class="dark-grey-background p-2">
+                <label asp-for="DailyCalorieIntake" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.DailyCalorieIntake</span>
+            </div>
+            <div class="light-grey-background p-2" style="border-radius:0 0px 10px 10px">
+                <label class="mb-0">Imágenes de perfil</label>
+                <a asp-action="ProfileImages" class=" float-right">
+                    <i class="fas fa-pencil-alt primary-color"></i>
+                </a>
+                <div class="text-center mt-2">
+                    @foreach (var image in Model.Images)
+                    {
+        <div class="d-inline-block mx-1 mb-3">
+            <img src="@Url.Content(image.ProfileUrl)" style="height:100px;width:100px" class="mb-1" />
+        </div>}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card profile-card mx-auto box-shadow mb-3">
+        <div class="card-header text-center">
+            <span class="font-h2">Tu cuenta</span>
+            <a asp-action="ChangePassword" class=" float-right">
+                <i class="fas fa-pencil-alt primary-color"></i>
+            </a>
+
+        </div>
+        <div class="card-body p-0">
+            <div class="light-grey-background p-2">
+                <label asp-for="Email" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.Email</span>
+            </div>
+            <div class="dark-grey-background p-2" style="border-radius:0 0px 10px 10px">
+                <label asp-for="Membership" class="mb-0"></label>: <span class="font-b1 ml-2">@Model.Membership</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div>
+        <div style="text-align:center">
+
+        </div>
+    </div>
+    <div class="centralised-card">
+        <div style="text-align:right" class="mb-1">
+            <a asp-action="MealBuilder" asp-controller="Meals" class="btn custom-primary-outline-btn">Start building meals</a>
+        </div>
+
+    </div>*@

@@ -1,0 +1,15 @@
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Core.deps.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Core.runtimeconfig.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Core.runtimeconfig.dev.json
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Core.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Core.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\bin\Release\netcoreapp3.1\IbradnzMealBuilder.Utility.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.csprojAssemblyReference.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.AssemblyInfoInputs.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.AssemblyInfo.cs
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.csproj.CoreCompileInputs.cache
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.csproj.CopyComplete
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.dll
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.pdb
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder.Core\obj\Release\netcoreapp3.1\IbradnzMealBuilder.Core.genruntimeconfig.cache

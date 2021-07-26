@@ -1,0 +1,76 @@
+﻿@model IbradnzMealBuilder.Models.ViewMealBuilderAndMealsViewModel
+@{
+    ViewData["Title"] = "Print meal";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+    ViewData["Header"] = "DESCARGA TUS COMIDAS";
+    ViewData["PrintMealPage"] = true;
+}
+
+<div class="font-family-poppins-medium">
+    @{
+
+        int mealNumber = 1;
+        @foreach (var meal in Model.Meals)
+        {
+            string mealName = "";
+            if (mealNumber == 1)
+            { mealName = "Desayuno"; }
+            else if (mealNumber == 2)
+            { mealName = "Almuerzo"; }
+            else if (mealNumber == 3)
+            { mealName = "Snack/Comida 3"; }
+            else if (mealNumber == 4)
+            { mealName = "Cena"; }
+            else
+            { mealName = $"Plato {mealNumber}"; }
+            mealNumber++;
+            <hr/>
+            <h6 style="text-align:center;">@mealName</h6>
+            <hr />
+            <table class="table table-bordered mb-5">
+                <tbody>
+                    <tr>
+                        <td class="meal-type-td">Proteína</td>
+                        <td class="meal-name-td">@meal.Protein</td>
+                        <td class="meal-amount-td">@meal.ProteinAmount gr</td>
+                    </tr>
+                    <tr>
+                        <td class="meal-type-td">Grasas</td>
+                        <td class="meal-name-td">@meal.Fat</td>
+                        <td class="meal-amount-td">@meal.FatAmount gr</td>
+                    </tr>
+                    <tr>
+                        <td class="meal-type-td">Carbos</td>
+                        <td class="meal-name-td">@meal.Carbohydrate</td>
+                        <td class="meal-amount-td">@meal.CarbohydrateAmount gr</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+
+    }
+</div>
+
+<style>
+    .table-bordered > tbody > tr > td,
+    .table-bordered > thead > tr > td,
+    .table-bordered {
+        border-left:0;
+        border-right:0;
+        border-bottom: 0;
+        border-top: 0;
+    }
+
+    .meal-type-td{
+        width:30%;
+    }
+
+    .meal-name-td{
+        width:50%;
+    }
+
+    .meal-amount-td{
+        width:20%;
+    }
+
+</style>

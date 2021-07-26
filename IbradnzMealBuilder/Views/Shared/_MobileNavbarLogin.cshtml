@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    if (User.IsInRole(AppConstant.AdminRole))
+    {
+        <li class="nav-item">
+            <a class="nav-link sidenav-nav-link font-h2" asp-area="" asp-controller="Admin" asp-action="Index">Dashboard</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link sidenav-nav-link font-h2" asp-area="" asp-controller="Account" asp-action="Profile">Mi perfil</a>
+        </li>
+
+    }
+}
+else
+{
+    <li class="nav-item mt-1 mx-1 d-inline text-center">
+        <a class="nav-link sidenav-nav-button custom-primary-btn px-4 py-2 font-h2" asp-controller="Account" asp-action="setupProfile">
+            Registrate <i class="fa fa-chevron-right"></i>
+        </a>
+    </li>
+
+    <li class="nav-item mt-1 mx-1 d-inline text-center">
+        <a class="nav-link sidenav-nav-button custom-primary-btn px-4 py-2 font-h2" asp-area="Identity" asp-page="/Account/Login">
+            Inicia sesión <i class="fa fa-chevron-right"></i>
+        </a>
+    </li>
+}

@@ -1,0 +1,163 @@
+﻿@model IbradnzMealBuilder.Models.TrainingIndexViewModel
+@using IbradnzMealBuilder.Utility
+
+<div class="modal fade" id="videoPlayer">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:black">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="videoPlayerBody" style="background-color:black">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="mx-auto my-3 light-grey-background training-card mt-2 font-family-poppins-medium" style="border-radius:5px">
+    <div class="text-center mb-1 font-size-20 font-weight-bold">
+        <span class="secondary-color fa-2x mx-2" style="cursor:pointer;font-size:40px !important" onclick="ChangeWeekOfTrainingVideo(-1)">
+            <i class="fas fa-caret-left"></i>
+        </span>
+        <span style="vertical-align:super">Semana @Model.DayOfWeek/@AppConstant.TotalTrainingWeeks</span>
+        <span class="secondary-color fa-2x mx-2" style="cursor:pointer;font-size:40px !important" onclick="ChangeWeekOfTrainingVideo(1)">
+            <i class="fas fa-caret-right"></i>
+        </span>
+    </div>
+</div>
+
+<input asp-for="DayOfWeek" hidden />
+<input asp-for="TrainingProgramId" hidden />
+<div>
+    <div class="mx-auto my-3 light-grey-background training-card mt-2 font-family-poppins-medium" style="border-radius:5px">
+
+        @foreach (var dayVideo in Model.TrainingCombos)
+        {
+            string dayTitle = Model.TrainingDays.Where(t => t.Day == dayVideo.Day && t.Week ==
+                dayVideo.Week && t.TProgram == dayVideo.TrainingProgram).First().Name;
+
+            <div class="w-100 collapsible py-2 px-2 font-weight-bold" style="font-size:12px;border-radius:10px">
+                <div style="width:50%" class="d-inline-block title">
+                    DIA @dayVideo.Day: @dayTitle
+                </div>
+                <div class="d-inline-block" style="width:10%">
+                    SETS
+                </div>
+                <div class="d-inline-block" style="width:10%">
+                    REPS
+                </div>
+                <div class="d-inline-block" style="width:25%">
+                    DESCANSO
+                </div>
+            </div>
+            <div class="w-100 content py-0 px-2 pt-0">
+                @foreach (var video in dayVideo.TrainingVideos)
+                {
+                    <div class="w-100 py-2">
+                        <div class="d-inline-block" style="width:50%">
+                            @video.Title
+                            <br />
+                            @if (Model.IsCustomerSubscribed)
+                            {
+                                <a onclick="PlayTrainingVid(@video.Id,1)" style="text-decoration:underline;cursor:pointer">ver video</a>
+                            }
+                            else
+                            {
+                                <a onclick="PremiumUsersOnly()" style="text-decoration:underline;cursor:pointer">ver video</a>
+                            }
+                        </div>
+                        <div class="d-inline-block" style="width:10%;vertical-align:top">
+                            @video.Sets
+                        </div>
+                        <div class="d-inline-block" style="width:10%;vertical-align:top">
+                            @video.Reps
+                        </div>
+                        <div class="d-inline-block" style="width:25%;vertical-align:top">
+                            @video.Time
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        }
+    </div>
+</div>
+<div class="mx-auto font-family-poppins-medium" style="width:250px;">
+    <div class="d-inline-block" onclick="ChangeWeekOfTrainingVideo(-1)" style="cursor:pointer">
+        <i class="far fa-arrow-alt-circle-left fa-3x text-white"></i>
+        <div class="text-white text-center font-size-15">SEMANA<br /> PASADA</div>
+    </div>
+    <div class="d-inline-block float-right" onclick="ChangeWeekOfTrainingVideo(1)" style="cursor:pointer">
+        <div> <i class="far fa-arrow-alt-circle-right text-center fa-3x text-white d-block"></i></div>
+        <div class="text-white text-center font-size-15">SIGUIENTE<br /> SEMANA</div>
+    </div>
+</div>
+
+<style>
+    .collapsible {
+        background-color: #e4e0e1;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            /*  background-color: #555;*/
+        }
+
+    .title:after {
+        content: '\276F';
+        color: #00db6f;
+        font-size: 19px;
+        font-weight: 700;
+        /*  float: right;*/
+        margin-left: 3px;
+    }
+
+    .active:after {
+        content: '\276F';
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 700;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #f1f1f1;
+    }
+</style>
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.firstElementChild.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+</script>

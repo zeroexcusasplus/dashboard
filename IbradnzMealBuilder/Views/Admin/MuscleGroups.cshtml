@@ -1,0 +1,55 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewMuscleGroupModel>
+@{
+    ViewData["Title"] = "grupos musculares";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "grupos musculares".ToUpper();
+}
+
+<div class="font-family-poppins-medium">
+    <div style="text-align:right">
+        <a class="btn custom-primary-btn mb-3" asp-action="addMuscleGroup">Add muscle group</a>
+    </div>
+    <div class="card box-shadow">
+        <div class="card-body">
+            <h5>Programs</h5>
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Name</th>
+                        <th>Desc</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var muscle in Model)
+                    {
+                        <tr>
+                            <td>
+                                @muscle.Order
+                            </td>
+                            <td>
+                                @muscle.Name
+                            </td>
+                            <td>
+                                @muscle.Description
+                            </td>
+                            <td>
+                                <a class="btn btn-sm custom-primary-btn float-right"
+                                   asp-controller="Admin" asp-action="EditMuscleGroup" asp-route-id="@muscle.Id">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    .card {
+        margin-bottom: 30px;
+    }
+</style>

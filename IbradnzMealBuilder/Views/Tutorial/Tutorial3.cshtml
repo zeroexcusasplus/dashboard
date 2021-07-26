@@ -1,0 +1,194 @@
+﻿@model IbradnzMealBuilder.Models.TutorialModel
+@{
+    ViewData["Title"] = "Paso 3/3";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+    Model.MealNumber = 3;
+}
+
+<div class="container-fluid">
+    <div class="overlay suc-overlay">
+        <a asp-controller="subscribe" asp-action="index" class="cancel-character-x" role="img" aria-label="Accept"></a>
+        <div class="container" style="margin-top:250px">
+            <div style="margin-bottom:20px" class="text-white text-center">
+                <div class="font-h2 text-white">PASO 3/3</div>
+                <div class="font-b1">
+                    No más dietas, ni aburrirte de lo mismo.
+                    Aquí eliges lo que más te guste y nosotros
+                    calculamos la porción que pesarás en tu plato
+                </div>
+            </div>
+            <div class="mt-3">
+                <input id="MacrosProtein" value="@Model.MacrosProtein" hidden />
+                <input id="MacroFat" value="@Model.MacroFat" hidden />
+                <input id="MacrosCarbohydrate" value="@Model.MacrosCarbohydrate" hidden />
+                <input id="MealNumber" value="@Model.MealNumber" hidden />
+                <div id="mealBuilderTable">
+                    @{
+                        int mealNumber = 1;
+                        int i = 0;
+                        string carbohydrateSelect = "carbohydrateSelect" + mealNumber.ToString();
+
+                        string proteinSelect = "proteinSelect" + mealNumber.ToString();
+
+                        string fatSelect = "fatSelect" + mealNumber.ToString();
+
+                        <div class="card mealbuilder-card mx-auto box-shadow box-shadow bg-white font-family-poppins-medium">
+                            <div class="card-header bg-transparent">
+                                <div class="font-weight-bold text-center font-size-25 font-family-poppins-medium">Desayuno</div>
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="">
+                                    <div class="row mb-3 w-100 mx-0">
+                                        <div class="col-3 py-0 px-1 mb-1">
+                                            <div class="text-center">
+                                                <div class="nutrient-label">Proteína</div>
+                                                <img src="~/Images/icons/PROTEIN_ICON.png" class="nutrient-image" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6 py-0 px-1 ">
+                                            <div class="nutrient-label">Selecciona</div>
+                                            <select class="form-control-sm meallist-select-option mealbuilder-input w-100
+                                                    bgcolor-white font-b1"
+                                                    asp-for="@Model.Meals[i].Protein" id="@proteinSelect"
+                                                    onchange="TutorialCalculateMealAmount('@mealNumber')">
+                                                @foreach (var mealType in Model.Proteins)
+                                                {
+                                                    <option value="@mealType.Value">@mealType.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-3 py-0 pl-1 pr-2">
+                                            <div class="nutrient-label cantidad">Cantidad</div>
+                                            <span id="proteinAmtGr" class="font-b1 nutrition-value">
+                                                @Model.Meals[i].ProteinAmount @Model.Meals[i].ProteinAmtAndUnit
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mb-3 w-100 mx-0">
+                                        <div class="col-3 py-0 px-1 mb-1">
+                                            <div class="text-center">
+                                                <div class="nutrient-label">Grasas</div>
+                                                <img src="~/Images/icons/FAT_ICON.png" class="nutrient-image" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6 py-0 px-1">
+                                            <div class="nutrient-label">Selecciona</div>
+                                            <select class="form-control-sm meallist-select-option mealbuilder-input w-100
+                                                    bgcolor-white font-b1"
+                                                    asp-for="@Model.Meals[i].Fat" id="@fatSelect"
+                                                    onchange="TutorialCalculateMealAmount('@mealNumber')">
+                                                @foreach (var mealType in Model.Fats)
+                                                {
+                                                    <option value="@mealType.Value">@mealType.Text</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="col-3 py-0 pl-1 pr-2">
+                                            <div class="nutrient-label cantidad">Cantidad</div>
+                                            <span id="fatAmtGr" class="nutrition-value font-b1">
+                                                @Model.Meals[i].FatAmount @Model.Meals[i].FatAmtAndUnit
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3 w-100 mx-0">
+                                        <div class="col-3 py-0 px-1 mb-1">
+                                            <div class="text-center">
+                                                <div class="nutrient-label">Carbos</div>
+                                                <img src="~/Images/icons/CARBS_ICON.png" class="nutrient-image" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6 py-0 px-1 ">
+                                            <div class="nutrient-label">Lista</div>
+                                            <select class=" form-control-sm meallist-select-option 
+                                                    mealbuilder-input w-100 bgcolor-white font-b1"
+                                                    asp-for="@Model.Meals[i].Carbohydrate" id="@carbohydrateSelect"
+                                                    onchange="TutorialCalculateMealAmount('@mealNumber')">
+                                                @foreach (var mealType in Model.Carbohydrates)
+                                                {
+                                                    <option value="@mealType.Value">@mealType.Text</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="col-3 py-0 pl-1 pr-2">
+                                            <div class="nutrient-label cantidad">Cantidad</div>
+                                            <span id="carbAmtGr" class="nutrition-value font-b1">
+                                                @Model.Meals[i].CarbohydrateAmount @Model.Meals[i].CarbohydrateAmtAndUnit
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+
+            <div class="font-family-poppins-medium text-center mt-4">
+                <a asp-action="Index" asp-controller="Subscribe" class="btn custom-secondary-btn font-b1" style="font-size:16px">
+                    Entendido <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Shared/PageUnderlays/_Tutorial3.cshtml" />
+
+<style>
+    .cancel-character-x:before {
+        content: "\2715";
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 28px;
+        color: white;
+    }
+
+    .arrow-icon {
+        width: 25px;
+    }
+</style>
+
+<script>
+    function TutorialCalculateMealAmount(mealNumberId) {
+        var proteinSelected = $('#proteinSelect' + mealNumberId).find(":selected").val();
+        var carbohydrateSelected = $('#carbohydrateSelect' + mealNumberId).find(":selected").val();
+        var fatSelected = $('#fatSelect' + mealNumberId).find(":selected").val();
+
+        var macroProtein = document.getElementById("MacrosProtein");
+        var macroCarbohydrate = document.getElementById("MacrosCarbohydrate");
+        var macroFat = document.getElementById("MacroFat");
+        var mealNumber = document.getElementById("MealNumber");
+
+        $.ajax({
+            url: "/Meals/CalculateMealAmount/",
+            dataType: "json",
+            data: {
+                carbohydrateId: carbohydrateSelected, proteinId: proteinSelected, fatId: fatSelected,
+                macrosCarbs: macroCarbohydrate.value, macrosProtein: macroProtein.value, macrosFat: macroFat.value, numberOfPlate: mealNumber.value,
+            },
+            success: function (result) {
+
+                document.getElementById("proteinAmtGr").innerHTML = result.proteinAndUunit;
+                document.getElementById("fatAmtGr").innerHTML = result.fatAndUnit;
+                document.getElementById("carbAmtGr").innerHTML = result.carbsAndUnit;
+
+                if (Number(result.fat) < 0) {
+                    LowProteinOption();
+                }
+            },
+            error: function (xhr, status, error) {
+                //ShowSnackbarError("Oops, sorry! Error");
+            }
+        });
+
+    }
+</script>

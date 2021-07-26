@@ -1,0 +1,14 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewProgramModel>
+
+<option value="0">All</option>
+@foreach (var prog in Model)
+{
+    if (prog.Id == ViewBag.ProgramId)
+    {
+        <option value="@prog.Id" selected>@prog.Name</option>
+    }
+    else
+    {
+        <option value="@prog.Id">@prog.Name</option>
+    }
+}

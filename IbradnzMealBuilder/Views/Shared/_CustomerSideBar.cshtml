@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IbradnzMealBuilder.Core
+@using IbradnzMealBuilder.Utility
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Account" asp-action="Profile">
+            <p class="dashboard-sidenav-link">
+                Perfil
+            </p>
+        </a>
+    </li>
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Account" asp-action="ProfileImages">
+            <p class="dashboard-sidenav-link">
+                Imágenes de perfil
+            </p>
+        </a>
+    </li>
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Meals" asp-action="MealBuilder">
+            <p class="dashboard-sidenav-link">
+                Constructor de comidas
+            </p>
+        </a>
+    </li>
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Account" asp-action="Meals">
+            <p class="dashboard-sidenav-link">
+                Comidas
+            </p>
+        </a>
+    </li>
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Training" asp-action="Index">
+            <p class="dashboard-sidenav-link">
+                Mi entrenamiento
+            </p>
+        </a>
+    </li>
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Account" asp-action="Subscriptions">
+            <p class="dashboard-sidenav-link">
+                Suscripciones
+            </p>
+        </a>
+    </li>
+    <li class="nav-item dashb-navbar-item">
+        <a class="nav-link dashboard-side-navitem " asp-area="" asp-controller="Account" asp-action="ChangePassword">
+            <p class="dashboard-sidenav-link">
+                Cambia la contraseña
+            </p>
+        </a>
+    </li> 

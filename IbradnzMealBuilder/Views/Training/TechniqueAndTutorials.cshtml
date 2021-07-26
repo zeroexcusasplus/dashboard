@@ -1,0 +1,72 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Models.ViewMuscleGroupModel>
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Header"] = "MI ENTRENAMIENTO";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["PageType"] = "Training";
+}
+
+<input id="active-page" value="training-page" hidden />
+<partial name="_TrainingType" />
+<div class="font-family-poppins-medium">
+    <div style="text-align:center;font-weight:500" class="font-size-25 text-white">
+        TECNICAS Y EJECUCION
+    </div>
+    <div style="max-width: 500px" class="mx-auto">
+        <div style="text-align:center;line-height:18px" class="font-size-16 text-white">
+            Bibiloteca de videos tutoriales y gulas para hacer paso a paso cada ejercicio por grupo muscular.
+        </div>
+    </div>
+</div>
+<div class="mx-auto training-card mt-2 pt-2 font-family-poppins-medium">
+    @foreach (var muscle in Model)
+    {
+        string youtubeEmbededUrl = "https://youtube.com/embed/" + muscle.YoutubeDescriptionLink;
+        <div class="row p-2 mb-0">
+            <div class="col-6 col-md-5">
+                <div class="training-video dark-grey-background">
+                    <iframe id="YouTubevideo" src="@youtubeEmbededUrl" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-6 col-md-7">
+                <div class="font-weight-bold mt-1">
+                </div>
+                <div class="font-weight-500">
+                    @muscle.Name
+                </div>
+                <div class="">
+                    @muscle.Description
+                </div>
+                <div>
+                    <a asp-controller="Training" asp-action="TechniqueTraining" asp-route-id="@muscle.Id" style="text-decoration:underline">Ver Ejercicios</a>
+                </div>
+            </div>
+        </div>
+        <hr class="m-0" />
+    }
+
+
+</div>
+
+<style>
+    .training-header-card-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .training-header-text {
+        font-size: 12px;
+    }
+
+    .training-card {
+        min-width: 200px;
+        max-width: 500px
+    }
+
+    .training-video {
+        width: 100%;
+        height: 135px;
+    }
+</style>

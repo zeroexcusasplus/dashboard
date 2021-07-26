@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Header"] = "MI ENTRENAMIENTO";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["PageType"] = "Training";
+}
+
+<input id="active-page" value="training-page" hidden />
+<div>
+    <partial name="_TrainingType" />
+    <partial name="_TrainingVideoIntro" />
+</div>

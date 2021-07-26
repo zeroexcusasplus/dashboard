@@ -1,0 +1,113 @@
+﻿@model IbradnzMealBuilder.Models.AddTrainingVideosViewModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "AÑADIR VIDEO DE ENTRENAMIENTO";
+}
+
+
+<div class="card dark-grey-background mx-auto mb-5 font-family-poppins-medium" style="min-width:200px;max-width:500px">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data" id="form">
+            <input hidden asp-for="PrevVideos" />
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="mx-auto box-shadow mb-2" style="width:100%;border-radius:10px;padding:10px 5px 5px 5px">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Week"></label>
+                    <select asp-for="Week" class="form-control">
+                        @for (int i = 1; i <= AppConstant.TotalTrainingWeeks; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Week" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Day"></label>
+                    <select asp-for="Day" class="form-control">
+                        @for (int i = 1; i <= AppConstant.TotalTrainingDays; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Day" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order"></label>
+                <input asp-for="Order" class="form-control" />
+                <span asp-validation-for="Order" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label asp-for="Sets"></label>
+                    <input asp-for="Sets" class="form-control" />
+                    <span asp-validation-for="Sets" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label asp-for="Reps"></label>
+                    <input asp-for="Reps" class="form-control" />
+                    <span asp-validation-for="Reps" class="text-danger"></span>
+                </div>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="TrainingType"></label>
+                <select asp-for="TrainingType" class="form-control" asp-items="Html.GetEnumSelectList<IbradnzMealBuilder.Utility.TrainingType>()"></select>
+                <span asp-validation-for="TrainingType" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="TrainingProgram"></label>
+                <select asp-for="TrainingProgram" class="form-control" asp-items="Model.Programs"></select>
+                <span asp-validation-for="TrainingProgram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YouTubeUrl"></label>
+                <input asp-for="YouTubeUrl" class="form-control" />
+                <span asp-validation-for="YouTubeUrl" class="text-danger"></span>
+            </div>
+            <div class="font-family-poppins-medium">OR</div>
+            <div>
+                <div class="form-group">
+                    <label>Prev Video</label>
+                    <select asp-for="PrevVideoUrl" asp-items="Model.PrevVideos" class="form-control"></select>
+                </div>
+            </div>
+            <div style="text-align:center">
+                <input id="submit-button" type="submit" class="btn custom-secondary-btn mx-auto" value="Añadir video" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    $(function () {
+        $('#form').submit(function () {
+            var $this = $(this);
+            if ($this.valid()) {
+                // show loading, spinner, whatever.
+                ShowUploading();
+            }
+        });
+    });
+</script>

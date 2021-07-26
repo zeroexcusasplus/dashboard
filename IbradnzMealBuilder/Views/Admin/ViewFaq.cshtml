@@ -1,0 +1,47 @@
+﻿@model IbradnzMealBuilder.Models.ViewFaqModel
+@using IbradnzMealBuilder.Utility
+@{
+    ViewData["Title"] = "View faq";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    ViewData["Header"] = "View faq".ToUpper();
+}
+
+
+<div class="card bg-white mx-auto mb-5 font-family-poppins-medium mt-5" style="min-width:200px;max-width:500px">
+    <div class="card-body">
+        <div class="my-2">
+            <div class="font-h2">
+                Question
+            </div>
+            <div class="font-b1">
+                @Model.Question
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="font-h2">
+                Answer
+            </div>
+            <div class="font-b1">
+                <div style="white-space: pre-line">@Model.Answer</div>
+            </div>
+        </div>
+        <hr class="font-b1"/>
+        <a class="custom-secondary-btn" asp-action="EditFaq" asp-route-id="@Model.Id">Edit</a>
+        <a class="custom-primary-btn" onclick="DeleteFaq(@Model.Id)">Delete</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    function DeleteFaq(id) {
+        if (confirm("Are you sure you want to delete this faq")) {
+            window.location.replace('/admin/deletefaq/' + id);
+        } else {
+
+        }
+    }
+</script>

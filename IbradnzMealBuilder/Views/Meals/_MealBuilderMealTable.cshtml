@@ -1,0 +1,240 @@
+﻿@model IbradnzMealBuilder.Models.CreateMealBuilderViewModel
+@{
+
+    int mealNumber = 1;
+
+    for (int i = 0; i < Model.Meals.Count(); i++)
+    {
+        string mealName = "";
+        if (mealNumber == 1)
+        { mealName = "Desayuno"; }
+        else if (mealNumber == 2)
+        { mealName = "Almuerzo"; }
+        else if (mealNumber == 3)
+        { mealName = "Snack/Comida 3"; }
+        else if (mealNumber == 4)
+        { mealName = "Cena"; }
+        else
+        { mealName = $"Plato {mealNumber}"; }
+        <div class="text-center">
+            <img src="~/Images/icons/ARROW_ICON.png" style="width:70px;height:70px" />
+        </div>
+        <div class="card mealbuilder-card mx-auto box-shadow box-shadow">
+            <div class="card-header bg-transparent">
+                <div class="text-center font-h2">@mealName</div>
+            </div>
+            <div class="card-body p-1">
+                <div class="">
+                    @{
+                        string carbohydrateInputGr = "carbohydrateAmtGr" + mealNumber.ToString();
+                        string carbohydrateInputId = "carbohydrateAmt" + mealNumber.ToString();
+                        string carbohydrateSelect = "carbohydrateSelect" + mealNumber.ToString();
+
+                        string vegetableInputGr = "vegetableAmtGr" + mealNumber.ToString();
+                        string vegetableInputId = "vegetableAmt" + mealNumber.ToString();
+                        string vegetableSelect = "vegetableSelect" + mealNumber.ToString();
+
+                        string proteinInputGr = "proteinAmtGr" + mealNumber.ToString();
+                        string proteinInputId = "proteinAmt" + mealNumber.ToString();
+                        string proteinSelect = "proteinSelect" + mealNumber.ToString();
+
+                        string fatInputGr = "fatAmtGr" + mealNumber.ToString();
+                        string fatInputId = "fatAmt" + mealNumber.ToString();
+                        string fatSelect = "fatSelect" + mealNumber.ToString();
+
+                        string firstOrOtherMealsSelect = i == 0 ? "firstMealSelect" : "otherMealsSelect";
+                        bool disableOtherMealsSelect = Model.Customize==1 && i > 0 ? true : false;
+
+                        string firstOrOtherCarbsSelect = i == 0 ? "firstCarbsSelect" : "otherCarbsSelect";
+                        string firstOrOtherCarbsInput = i == 0 ? "firstCarbsInput" : "otherCarbsInput";
+                        string firstOrOtherCarbsAmtGr = i == 0 ? "firstCarbsAmtGr" : "otherCarbsAmtGr";
+
+                        string firstOrOtherProteinSelect = i == 0 ? "firstProteinSelect" : "otherProteinSelect";
+                        string firstOrOtherProteinInput = i == 0 ? "firstProteinInput" : "otherProteinInput";
+                        string firstOrOtherProteinAmtGr = i == 0 ? "firstProeinAmtGr" : "otherProteinAmtGr";
+
+                        string firstOrOtherFatSelect = i == 0 ? "firstFatSelect" : "otherFatSelect";
+                        string firstOrOtherFatInput = i == 0 ? "firstFatInput" : "otherFatInput";
+                        string firstOrOtherFatAmtGr = i == 0 ? "firstFatAmtGr" : "otherFatAmtGr";
+
+                        <div class="row mb-3 w-100 mx-0">
+                            <div class="col-3 py-0 px-1 mb-1">
+                                <div class="text-center">
+                                    <div class="nutrient-label">Proteína</div>
+                                    <img src="~/Images/icons/PROTEIN_ICON.png" class="nutrient-image" />
+                                </div>
+                            </div>
+                            <div class="col-6 py-0 px-1 ">
+                                <div class="nutrient-label">Selecciona</div>
+
+                                @{
+                                    if (disableOtherMealsSelect)
+                                    {
+                                        <select class="form-control-sm meallist-select-option mealbuilder-input 
+                                                w-100 bgcolor-white font-b1 @firstOrOtherMealsSelect @firstOrOtherProteinSelect"
+                                                asp-for="@Model.Meals[i].Protein" id="@proteinSelect"
+                                                onchange="CalculateMealAmount('@mealNumber')" disabled>
+                                            @foreach (var mealType in Model.Proteins)
+                                            {
+                                                <option value="@mealType.Value">@mealType.Text</option>
+                                            }
+                                        </select>
+                                    }
+
+                                    else
+                                    {
+                                        <select class="form-control-sm meallist-select-option mealbuilder-input w-100 bgcolor-white font-b1 @firstOrOtherMealsSelect @firstOrOtherProteinSelect"
+                                                asp-for="@Model.Meals[i].Protein" id="@proteinSelect"
+                                                onchange="CalculateMealAmount('@mealNumber')">
+                                            @foreach (var mealType in Model.Proteins)
+                                            {
+                                                <option value="@mealType.Value">@mealType.Text</option>
+                                            }
+                                        </select>
+                                    }
+                                }
+
+                            </div>
+                            <div class="col-3 py-0 pl-1 pr-2">
+                                <div class="nutrient-label cantidad">Cantidad</div>
+                                <input class="@firstOrOtherProteinInput" asp-for="@Model.Meals[i].ProteinAmount" id="@proteinInputId" hidden />
+                                <span id="@proteinInputGr" class="font-b1 nutrition-value @firstOrOtherProteinAmtGr">
+                                    @Model.Meals[i].ProteinAmount @Model.Meals[i].ProteinAmtAndUnit
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 w-100 mx-0">
+                            <div class="col-3 py-0 px-1 mb-1">
+                                <div class="text-center">
+                                    <div class="nutrient-label">Grasas</div>
+                                    <img src="~/Images/icons/FAT_ICON.png" class="nutrient-image" />
+                                </div>
+                            </div>
+                            <div class="col-6 py-0 px-1">
+                                <div class="nutrient-label">Selecciona</div>
+                                @{
+                                    if (disableOtherMealsSelect)
+                                    {
+                                        <select class="form-control-sm meallist-select-option mealbuilder-input w-100 bgcolor-white font-b1 @firstOrOtherMealsSelect @firstOrOtherFatSelect"
+                                                asp-for="@Model.Meals[i].Fat" id="@fatSelect"
+                                                onchange="CalculateMealAmount('@mealNumber')" disabled>
+                                            @foreach (var mealType in Model.Fats)
+                                            {
+                                                <option value="@mealType.Value">@mealType.Text</option>
+                                            }
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control-sm meallist-select-option mealbuilder-input w-100 bgcolor-white font-b1 @firstOrOtherMealsSelect @firstOrOtherFatSelect"
+                                                asp-for="@Model.Meals[i].Fat" id="@fatSelect"
+                                                onchange="CalculateMealAmount('@mealNumber')">
+                                            @foreach (var mealType in Model.Fats)
+                                            {
+                                                <option value="@mealType.Value">@mealType.Text</option>
+                                            }
+                                        </select>
+                                    }
+                                }
+
+                            </div>
+                            <div class="col-3 py-0 pl-1 pr-2">
+                                <div class="nutrient-label cantidad">Cantidad</div>
+                                <input class="@firstOrOtherFatInput" asp-for="@Model.Meals[i].FatAmount" id="@fatInputId" hidden />
+                                <span id="@fatInputGr" class="nutrition-value font-b1 @firstOrOtherFatAmtGr">
+                                    @Model.Meals[i].FatAmount @Model.Meals[i].FatAmtAndUnit
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5 w-100 mx-0">
+                            <div class="col-3 py-0 px-1 mb-1">
+                                <div class="text-center">
+                                    <div class="nutrient-label">Carbos</div>
+                                    <img src="~/Images/icons/CARBS_ICON.png" class="nutrient-image" />
+                                </div>
+                            </div>
+                            <div class="col-6 py-0 px-1 ">
+                                <div class="nutrient-label">Selecciona</div>
+                                @{
+                                    if (disableOtherMealsSelect)
+                                    {
+                                        <select class="@firstOrOtherMealsSelect form-control-sm meallist-select-option mealbuilder-input w-100 bgcolor-white font-b1 @firstOrOtherCarbsSelect"
+                                                asp-for="@Model.Meals[i].Carbohydrate" id="@carbohydrateSelect"
+                                                onchange="CalculateMealAmount('@mealNumber')" disabled>
+                                            @foreach (var mealType in Model.Carbohydrates)
+                                            {
+                                                <option value="@mealType.Value">@mealType.Text</option>
+                                            }
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="@firstOrOtherMealsSelect form-control-sm meallist-select-option mealbuilder-input w-100 bgcolor-white font-b1 @firstOrOtherCarbsSelect"
+                                                asp-for="@Model.Meals[i].Carbohydrate" id="@carbohydrateSelect"
+                                                onchange="CalculateMealAmount('@mealNumber')">
+                                            @foreach (var mealType in Model.Carbohydrates)
+                                            {
+                                                <option value="@mealType.Value">@mealType.Text</option>
+                                            }
+                                        </select>
+                                    }
+                                }
+
+                            </div>
+                            <div class="col-3 py-0 pl-1 pr-2">
+                                <div class="nutrient-label cantidad">Cantidad</div>
+                                <input class="@firstOrOtherCarbsInput" asp-for="@Model.Meals[i].CarbohydrateAmount" id="@carbohydrateInputId" hidden />
+                                <span id="@carbohydrateInputGr" class="nutrition-value font-b1 @firstOrOtherCarbsAmtGr" >
+                                    @Model.Meals[i].CarbohydrateAmount @Model.Meals[i].CarbohydrateAmtAndUnit
+                                </span>
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+
+
+
+
+        mealNumber = mealNumber + 1;
+    }
+}
+
+<style>
+    .nutrient-label {
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 5px;
+        font-family: poppins-medium
+    }
+
+    .cantidad{
+        margin-bottom:15px;
+    }
+
+    .nutrition-value{
+        margin-left:7px;
+    }
+
+    .bgcolor-white {
+        background-color: white;
+    }
+
+    .mealbuilder-input {
+        border: 0 !important;
+        height: 40px;
+        border-radius: 0 !important;
+        font-weight: 400 !important;
+    }
+
+    .meallist-select-option {
+        background-color: #2a54ff;
+        color:white;
+    }
+</style>
