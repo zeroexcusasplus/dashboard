@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "umiamJ6uiob3vCOppg2bUDvIPL2AmJ62hlS/YirvuJAr4N3rsSUlaZzV8ZuX4FIdMaqtI6G1ZShwT639f8mM1g==",
+  "dgSpecHash": "z/wUdYEF47bDb29nT6n4ueAI/mM2nXEB2/CV/ElATgAOt0cTJlXElGP6eXB0C+VQy72Q1J0b/Xgb0qdnRAbo3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\waheedullah\\source\\repos\\IbradnzMealBuilder\\IbradnzMealBuilder.csproj",
   "expectedPackageFiles": [
@@ -63,6 +63,7 @@
     "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.aspnetcore.server.kestrel.https\\2.2.0\\microsoft.aspnetcore.server.kestrel.https.2.2.0.nupkg.sha512",
     "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.aspnetcore.server.kestrel.transport.abstractions\\2.2.0\\microsoft.aspnetcore.server.kestrel.transport.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.aspnetcore.server.kestrel.transport.sockets\\2.2.0\\microsoft.aspnetcore.server.kestrel.transport.sockets.2.2.0.nupkg.sha512",
+    "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.aspnetcore.session\\2.2.0\\microsoft.aspnetcore.session.2.2.0.nupkg.sha512",
     "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.aspnetcore.staticfiles\\2.2.0\\microsoft.aspnetcore.staticfiles.2.2.0.nupkg.sha512",
     "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\waheedullah\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

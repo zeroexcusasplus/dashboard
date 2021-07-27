@@ -1,0 +1,91 @@
+﻿@model IEnumerable<IbradnzMealBuilder.Core.Customer>
+
+
+
+<div class="card">
+    <div class="card-header">
+
+        <div class="row">
+            @*<div class="col-md-4">
+                    <a asp-action="Create" class="btn btn-outline-primary">Create a User</a>
+                </div>*@
+            <div class="col-md-4 ">
+                <div class="justify-content-between">
+                    <h4>All users</h4>
+                </div>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <!--<div class="float-right">-->
+                <a asp-action="Index" class="btn btn-outline-success">Back to all Users</a>
+                <!--<button type="submit" class="btn btn-outline-success">Save</button>
+                </div>-->
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="card-body">
+        <table class="table table-sm table-striped table-responsive">
+            <tr><th>ID</th><th>First name</th><th>Last name</th><th>Activity level</th><th></th></tr>
+            @foreach (IbradnzMealBuilder.Core.Customer user in Model)
+            {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Firstname</td>
+
+            <td>
+                @user.Lastname
+            </td>
+            <td>
+                @user.ActivityLevel
+            </td>
+            <td>@user.BMR</td>
+            <td>@user.BMR_IncludingActivity</td>
+
+            <td>
+                @user.Calories
+            </td>
+            <td>
+                @user.Country
+            </td>
+            <td>@user.DailyCalorieIntake</td>
+            <td>@user.DateCreated</td>
+
+            <td>
+                @user.DateOfBirth
+            </td>
+            <td>
+                @user.Gender
+            </td>
+            <td>@user.Goal</td>
+            <td>@user.Height</td>
+
+            <td>
+                @user.MacrosCarbohydrate
+            </td>
+            <td>
+                @user.MacrosFat
+            </td>
+            <td>
+                @user.MacrosProtein
+            </td>
+            <td>@user.MealBuilders</td>
+            <td>@user.PhoneNumber</td>
+
+            <td>
+                @user.Weight
+            </td>
+            <td>
+                @user.Unit
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+    <div class="card-footer">
+
+    </div>
+</div>
+

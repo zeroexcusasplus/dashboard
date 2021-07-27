@@ -21,6 +21,7 @@ namespace IbradnzMealBuilder
             try
             {
 
+                //StripeConfiguration.ApiKey = "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";
 
                 StripeConfiguration.ApiKey = "sk_test_51HLWNwAydFIsMiHPnCXWWj4LEcNZ9yvpPrYuNo7CH0vcktny2InKuihs5LapLDgdQBYmIXwcC92e25HHqYUYPlc900syJsguGt";
 

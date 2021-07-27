@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using IbradnzMealBuilder.Utility;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
+using System.Security.Principal;
 
 namespace IbradnzMealBuilder.Controllers
 {
@@ -38,8 +39,11 @@ namespace IbradnzMealBuilder.Controllers
 
         public async Task<IActionResult> Index()
         {
+           
             return View();
         }
+
+        
         public IActionResult PremiumUsersOnly()
         {
             ViewBag.MonthlyPrice = appSettings.Value.MonthlySubscriptionPrice;

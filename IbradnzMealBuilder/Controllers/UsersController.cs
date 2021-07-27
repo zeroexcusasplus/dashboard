@@ -1,5 +1,6 @@
 ﻿using IbradnzMealBuilder.Core;
 using IbradnzMealBuilder.Models;
+using IbradnzMealBuilder.Service.Contract;
 using IbradnzMealBuilder.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,21 +16,29 @@ namespace IbradnzMealBuilder.Controllers
     [Authorize(Roles = AppConstant.AdminRole)]
     public class UsersController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ICustomerService _customerService;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, ICustomerService customerService)
         {
-            this.userManager = userManager;
+            this._userManager = userManager;
+            this._customerService = customerService;
         }
 
        
         public IActionResult index()
         {
-            var users = userManager.Users;
+            var users = _userManager.Users;
             return View(users);
         }
 
+        public IActionResult GetAllCustomer()
+        {
+            var customers = _customerService.GetAllCustomers();
+            return View(customers);
+        }
 
-      
+
+
     }
 }

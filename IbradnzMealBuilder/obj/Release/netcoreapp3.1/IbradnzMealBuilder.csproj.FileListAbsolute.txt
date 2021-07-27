@@ -322,3 +322,5 @@ C:\Users\waheedullah\source\repos\IbradnzMealBuilder\bin\Release\netcoreapp3.1\S
 C:\Users\waheedullah\source\repos\IbradnzMealBuilder\bin\Release\netcoreapp3.1\System.ServiceModel.Primitives.dll
 C:\Users\waheedullah\source\repos\IbradnzMealBuilder\bin\Release\netcoreapp3.1\System.ServiceModel.dll
 C:\Users\waheedullah\source\repos\IbradnzMealBuilder\obj\Release\netcoreapp3.1\Razor\Views\Card\Index.cshtml.g.cs
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder\obj\Release\netcoreapp3.1\Razor\Views\Users\Index.cshtml.g.cs
+C:\Users\waheedullah\source\repos\IbradnzMealBuilder\obj\Release\netcoreapp3.1\Razor\Views\Users\GetAllCustomer.cshtml.g.cs
